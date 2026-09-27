@@ -1,0 +1,231 @@
+%% =====================================================================
+%% Replicating a paper --- template
+%% ML & FinTech, National Yang Ming Chiao Tung University
+%% Instructor: Huei-Wen Teng
+%%
+%% This file follows the SSRN.tex format used in the lab.
+%% Every instruction to you is written in \emph{italics} using \inst{...}.
+%% Delete each instruction once you have acted on it.
+%% =====================================================================
+
+\documentclass[12pt]{article}
+
+\usepackage{adjustbox,array,amssymb,amsmath,amsfonts,eurosym,geometry,graphicx,
+            caption,color,setspace,sectsty,comment,footmisc,natbib,pdflscape,
+            subfigure,longtable,lscape,float,multirow,booktabs,makecell,
+            hyperref,ulem,appendix}
+
+\normalem
+\onehalfspacing
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}{Proposition}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\newtheorem{hyp}{Hypothesis}
+\newtheorem{subhyp}{Hypothesis}[hyp]
+\renewcommand{\thesubhyp}{\thehyp\alph{subhyp}}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+
+\geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
+
+%% ---------------------------------------------------------------------
+%% Instructions are italic. Delete the \inst{...} once you have done it.
+%% ---------------------------------------------------------------------
+\newcommand{\inst}[1]{\textit{#1}}
+
+\begin{document}
+
+\begin{titlepage}
+
+\title{Replicating the paper:
+       \inst{exact title of the paper you are replicating, followed by the
+       citation, e.g.\ \cite{bitetto2024can}}}
+
+\author{\inst{Your name}\thanks{Department of Information Management and Finance,
+        National Yang Ming Chiao Tung University. Email:
+        \href{mailto:you@nycu.edu.tw}{you@nycu.edu.tw}}}
+
+\date{\today}
+\maketitle
+
+\begin{abstract}
+\noindent
+\inst{Briefly explain what the paper you are replicating does, what it
+contributes, and how it bridges the gap left by the papers before it. Then say
+why you are interested in this paper. Write it as one paragraph of continuous
+prose, not as a list. Aim for 150--200 words. Do not simply copy the original
+abstract: the abstract of a replication describes the replication.}
+
+\vspace{0in}
+\noindent\textbf{Keywords:} \inst{copy the keywords from the paper you are replicating}
+
+\vspace{0in}
+\noindent\textbf{JEL Codes:} \inst{copy the JEL codes from the paper you are
+replicating. If the paper does not give any, choose from the JEL classification
+system and say in a footnote that you chose them yourself.}
+
+\bigskip
+\end{abstract}
+
+\setcounter{page}{0}
+\thispagestyle{empty}
+\end{titlepage}
+\pagebreak
+
+\newpage
+\clearpage
+
+
+\section{Motivation}
+\label{sec:motivation}
+
+\inst{Treat this as a short journal article rather than a homework write-up.
+The whole manuscript is limited to 2,400 words, excluding tables, figures and
+references, so every paragraph has to earn its place. This file already uses the
+SSRN format the lab writes in, so if you later develop the work into a thesis or
+a conference paper you will not have to move it.}
+
+\inst{Your introduction should do four things, in this order. Say what question
+the original paper asks and why it matters. Say what the paper found. Say what
+you set out to reproduce, and be explicit about what you could and could not
+obtain --- the same data, a subset, or a substitute. Finally, say what a reader
+learns from your replication that they would not learn from the paper alone.}
+
+\inst{Cite five papers that are fundamental to the question, and five that
+attack it with machine learning or AI. Follow the Google Scholar convention for
+bibkeys, as in \texttt{bitetto2024can}. A citation you have not read does not
+belong here.}
+
+
+\section{Data}
+
+\subsection{Dependent and independent variables}
+
+\inst{List every variable with its acronym, a one-line description, and its type: binary, categorical, or continuous. State clearly which variable is the response
+and which are the predictors. If your data differs from the data in the original paper, say so here and say what you expect that to change.}
+
+
+\subsection{Data exploration, cleaning and preprocessing}
+
+\subsubsection{Cross-sectional data}
+
+\begin{itemize}
+\item Check whether there are missing values.
+  \begin{itemize}
+  \item It is not sufficient to list the proportion of missing values per variable.
+  \item Show exactly which observations and which variables the missing values fall in.
+  \item If values are missing, consider a missing indicator.
+  \end{itemize}
+\item Check whether there are outliers.
+  \begin{itemize}
+  \item Check first whether they are errors introduced when the data was retrieved.
+        If they are not, keep them for the analysis.
+  \end{itemize}
+\item For categorical variables, show the frequency tables.
+  \begin{itemize}
+  \item For predictors, decide whether to use dummy variables or to treat the variable
+        as continuous, and whether to merge categories that are extremely rare.
+  \item For the response, decide between logistic and multinomial regression, and
+        check whether the classes are imbalanced.
+  \end{itemize}
+\item For continuous variables, report mean, standard deviation, minimum, maximum,
+      skewness and kurtosis.
+  \begin{itemize}
+  \item Decide whether a logarithm is needed, which it usually is when the data is
+        heavily skewed.
+  \end{itemize}
+\item Scaling matters. Min--max or z-score puts the features on a common range and
+      makes the numerical procedures more stable. Report whether you scaled or not.
+\item Use pairwise scatter plots to look for patterns, and decide whether quadratic
+      terms, two-way interactions or logarithms are called for.
+\item Show a heatmap of the correlations.
+\end{itemize}
+
+
+\section{Methodology}
+
+\subsection{Benchmark model}
+
+\inst{Use the same benchmark the original paper used, so that your numbers are
+comparable to theirs. If you cannot, say which model you substituted and why.}
+
+One of the following:
+\begin{itemize}
+\item Logistic regression
+\item Multinomial regression
+\item Linear regression
+\end{itemize}
+
+
+\subsection{Experimental Design}
+
+\inst{Give a flow chart of your procedure, from raw data to reported number.
+A reader should be able to reproduce your result from that figure alone.}
+
+\begin{itemize}
+\item Explain the design of the replication.
+\item State what is novel in your version. For a replication this is usually not a
+      new method: it is a test the original paper did not run, data it did not use,
+      or an assumption it did not check.
+\end{itemize}
+
+
+\subsection{Performance measures}
+
+\inst{Use the measures the original paper reports, so the comparison is direct.
+Add any measure you think the paper should have reported, and say why.}
+
+
+\section{Results}
+
+\inst{Put your numbers and the original paper's numbers side by side in one table.
+Then state plainly whether the result replicated. ``It did not replicate'' is a
+finding, not a failure, provided you can show what you did.}
+
+
+\section{Conclusion}
+
+\inst{Two paragraphs. What survived the replication, and what a reader should now
+believe less strongly than before.}
+
+
+\section*{Declaration}
+
+\subsection*{Declaration of Pedagogical Purpose}
+
+This manuscript is prepared as part of the course project for Machine Learning and
+FinTech at National Yang Ming Chiao Tung University, instructed by Professor
+Huei-Wen Teng. The work is intended solely for pedagogical purposes, including
+learning, discussion, and academic training. It does not represent original research
+submitted for journal publication, nor should it be considered professional financial
+advice.
+
+\subsection*{Declaration of generative AI and AI-assisted technologies in the writing process}
+
+\inst{Name the tools you actually used. Replace the bracketed placeholders below.}
+
+During the preparation of this work, the authors used [ChatGPT] and [Grok], developed
+by [OpenAI] and [xAI] respectively, in order to improve the clarity, precision, and
+overall quality of the writing. After using these tools, the authors reviewed and
+edited the content as needed and take full responsibility for the content of the
+article.
+
+
+\bibliographystyle{chicago}
+\bibliography{ref}
+
+
+\appendix
+
+\section{\inst{Appendix title}}
+
+\inst{Titles have to be concise. Put here anything a reader needs in order to
+reproduce your work but does not need in order to follow the argument.}
+
+
+\end{document}

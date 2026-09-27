@@ -1,0 +1,31 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1789404444.263833   36988 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1789404448.214245   36988 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:7: The name tf.disable_v2_behavior is deprecated. Please use tf.compat.v1.disable_v2_behavior instead.
+
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tensorflow\python\compat\v2_compat.py:98: disable_resource_variables (from tensorflow.python.ops.resource_variables_toggle) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tf_keras\src\utils\version_utils.py:78: The name tf.executing_eagerly_outside_functions is deprecated. Please use tf.compat.v1.executing_eagerly_outside_functions instead.
+
+C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:89: UserWarning: `tf.nn.rnn_cell.BasicLSTMCell` is deprecated and will be removed in a future version. This class is equivalent as `tf.keras.layers.LSTMCell`, and will be replaced by that in Tensorflow 2.0.
+  lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:95: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tf_keras\src\layers\rnn\legacy_cells.py:788: calling Zeros.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:102: UserWarning: `tf.layers.dense` is deprecated and will be removed in a future version. Please use `tf.keras.layers.Dense` instead.
+  prediction = tf.layers.dense(
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tensorflow\python\util\dispatch.py:1264: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Deprecated in favor of operator or tf.math.divide.
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:131: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+I0000 00:00:1789404459.232752   36988 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX_VNNI AVX_VNNI_INT8 AVX_NE_CONVERT FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1789404459.246385   36988 mlir_graph_optimization_pass.cc:437] MLIR V1 optimization pass is not enabled

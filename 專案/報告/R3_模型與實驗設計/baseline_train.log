@@ -1,0 +1,356 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1789372670.703484   14816 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1789372672.453088   14816 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:7: The name tf.disable_v2_behavior is deprecated. Please use tf.compat.v1.disable_v2_behavior instead.
+
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tensorflow\python\compat\v2_compat.py:98: disable_resource_variables (from tensorflow.python.ops.resource_variables_toggle) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tf_keras\src\utils\version_utils.py:78: The name tf.executing_eagerly_outside_functions is deprecated. Please use tf.compat.v1.executing_eagerly_outside_functions instead.
+
+C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:87: UserWarning: `tf.nn.rnn_cell.BasicLSTMCell` is deprecated and will be removed in a future version. This class is equivalent as `tf.keras.layers.LSTMCell`, and will be replaced by that in Tensorflow 2.0.
+  lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:93: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tf_keras\src\layers\rnn\legacy_cells.py:788: calling Zeros.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:100: UserWarning: `tf.layers.dense` is deprecated and will be removed in a future version. Please use `tf.keras.layers.Dense` instead.
+  prediction = tf.layers.dense(
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tensorflow\python\util\dispatch.py:1264: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Deprecated in favor of operator or tf.math.divide.
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:129: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+I0000 00:00:1789372681.851959   14816 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX_VNNI AVX_VNNI_INT8 AVX_NE_CONVERT FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1789372681.858654   14816 mlir_graph_optimization_pass.cc:437] MLIR V1 optimization pass is not enabled
+arguments: Namespace(p='../data/2013-01-01', m='NASDAQ', t='NASDAQ_tickers_qualify_dr-0.98_min-5_smooth.csv', l='4', u='32', s=1, r=0.001, a=1, gpu=False)
+parameters: {'seq': 4, 'unit': 32, 'lr': 0.001, 'alpha': 1.0}
+#tickers selected: 1026
+single EOD data shape: (1245, 6)
+device name: /cpu:0
+Train Loss: 0.01144393 0.011033136 0.0004107869
+Valid MSE: 0.0028166606 0.0024207616 0.00039589914
+	 Valid preformance: {'mse': np.float64(0.0024219316997761238), 'mrrt': 0.03271876864890782, 'btl': np.float64(2.5238601559831295)}
+Test MSE: 0.0021617105 0.001830346 0.00033136405
+	 Test performance: {'mse': np.float64(0.0018300660491668917), 'mrrt': 0.05193599227281995, 'btl': np.float64(2.0308586835162714)}
+Better valid loss: 0.0028166606
+epoch: 0 time: 9.9940 
+Train Loss: 0.002004184 0.0017007006 0.00030348304
+Valid MSE: 0.0020639892 0.0017470627 0.0003169274
+	 Valid preformance: {'mse': np.float64(0.0017482724274351376), 'mrrt': 0.03448902988890403, 'btl': np.float64(2.8977919327444397)}
+Test MSE: 0.0015363897 0.001275748 0.0002606416
+	 Test performance: {'mse': np.float64(0.0012754544464366104), 'mrrt': 0.04258983276940405, 'btl': np.float64(1.4527694527059793)}
+Better valid loss: 0.0020639892
+epoch: 1 time: 10.1167 
+Train Loss: 0.0015832102 0.0013415087 0.00024169995
+Valid MSE: 0.0022885792 0.0020257842 0.000262796
+	 Valid preformance: {'mse': np.float64(0.0020273438990403994), 'mrrt': 0.037470281643722514, 'btl': np.float64(2.7411922034225427)}
+Test MSE: 0.0017840168 0.001568445 0.00021557177
+	 Test performance: {'mse': np.float64(0.001568070956732139), 'mrrt': 0.04263187605638285, 'btl': np.float64(1.2035973225720227)}
+epoch: 2 time: 10.8259 
+Train Loss: 0.001406034 0.0012026675 0.00020336635
+Valid MSE: 0.0016379585 0.0014193062 0.00021865239
+	 Valid preformance: {'mse': np.float64(0.0014195495793452209), 'mrrt': 0.035784027570202256, 'btl': np.float64(2.152049518947024)}
+Test MSE: 0.0013827959 0.0012067582 0.00017603757
+	 Test performance: {'mse': np.float64(0.0012066570622661095), 'mrrt': 0.045712642891134726, 'btl': np.float64(1.4764432605588809)}
+Better valid loss: 0.0016379585
+epoch: 3 time: 10.5303 
+Train Loss: 0.0011541486 0.0009743111 0.00017983811
+Valid MSE: 0.0011911336 0.0009893884 0.00020174457
+	 Valid preformance: {'mse': np.float64(0.000989956883694817), 'mrrt': 0.03887512816270796, 'btl': np.float64(2.3665199421229772)}
+Test MSE: 0.0008817495 0.0007201964 0.00016155347
+	 Test performance: {'mse': np.float64(0.0007200167935139096), 'mrrt': 0.041695651532627255, 'btl': np.float64(1.185017719049938)}
+Better valid loss: 0.0011911336
+epoch: 4 time: 10.3093 
+Train Loss: 0.0011118011 0.0009471391 0.00016466161
+Valid MSE: 0.0011335299 0.00094998296 0.00018354725
+	 Valid preformance: {'mse': np.float64(0.0009504032820085127), 'mrrt': 0.03958106866924083, 'btl': np.float64(2.571046999131795)}
+Test MSE: 0.00084975053 0.0007055912 0.00014415968
+	 Test performance: {'mse': np.float64(0.0007054589208677804), 'mrrt': 0.039637381285382675, 'btl': np.float64(1.092229166533798)}
+Better valid loss: 0.0011335299
+epoch: 5 time: 10.2409 
+Train Loss: 0.0010559493 0.0009057757 0.00015017256
+Valid MSE: 0.0011804721 0.0010174813 0.00016299018
+	 Valid preformance: {'mse': np.float64(0.0010177449004897447), 'mrrt': 0.03785322215077519, 'btl': np.float64(2.2216454324661754)}
+Test MSE: 0.00097037246 0.0008398419 0.00013053017
+	 Test performance: {'mse': np.float64(0.0008397538261876698), 'mrrt': 0.0424624011263775, 'btl': np.float64(1.233463988522999)}
+epoch: 6 time: 10.3821 
+Train Loss: 0.0009327073 0.00079831 0.0001343984
+Valid MSE: 0.0009097573 0.0007617498 0.00014800759
+	 Valid preformance: {'mse': np.float64(0.0007621593803469387), 'mrrt': 0.039885285572017926, 'btl': np.float64(2.1083566980669275)}
+Test MSE: 0.0006734618 0.0005571413 0.00011632052
+	 Test performance: {'mse': np.float64(0.0005570082514571245), 'mrrt': 0.042967026763871916, 'btl': np.float64(1.3538053596857935)}
+Better valid loss: 0.0009097573
+epoch: 7 time: 10.2982 
+Train Loss: 0.0008506819 0.00073185825 0.00011882353
+Valid MSE: 0.00082747533 0.00069957046 0.00012790445
+	 Valid preformance: {'mse': np.float64(0.0006999318678013891), 'mrrt': 0.03772255206848356, 'btl': np.float64(1.8856759810587391)}
+Test MSE: 0.00061421073 0.0005147143 9.9496305e-05
+	 Test performance: {'mse': np.float64(0.0005145959927284706), 'mrrt': 0.04562603061217268, 'btl': np.float64(1.2962480474961922)}
+Better valid loss: 0.00082747533
+epoch: 8 time: 10.4889 
+Train Loss: 0.00078786147 0.0006856973 0.00010216364
+Valid MSE: 0.00081574486 0.0007083353 0.00010740964
+	 Valid preformance: {'mse': np.float64(0.0007086078124201307), 'mrrt': 0.036164361911544124, 'btl': np.float64(1.8160076418425888)}
+Test MSE: 0.000630173 0.0005474308 8.274204e-05
+	 Test performance: {'mse': np.float64(0.0005473440477395502), 'mrrt': 0.04944394549102864, 'btl': np.float64(1.319117877050303)}
+Better valid loss: 0.00081574486
+epoch: 9 time: 10.4906 
+Train Loss: 0.0007317897 0.0006477426 8.4047104e-05
+Valid MSE: 0.0008849499 0.0007897389 9.52109e-05
+	 Valid preformance: {'mse': np.float64(0.0007902108832422117), 'mrrt': 0.03444976440704079, 'btl': np.float64(2.028285979933571)}
+Test MSE: 0.0006921485 0.00061673805 7.5410724e-05
+	 Test performance: {'mse': np.float64(0.0006165807296875446), 'mrrt': 0.04188891168241197, 'btl': np.float64(1.265734096406959)}
+epoch: 10 time: 10.9465 
+Train Loss: 0.00062282116 0.0005600664 6.2755105e-05
+Valid MSE: 0.0007175001 0.00065542123 6.207907e-05
+	 Valid preformance: {'mse': np.float64(0.0006557941597647073), 'mrrt': 0.03166761805556122, 'btl': np.float64(1.688198100309819)}
+Test MSE: 0.0005787186 0.0005334797 4.523881e-05
+	 Test performance: {'mse': np.float64(0.0005333307406216557), 'mrrt': 0.04540513954198267, 'btl': np.float64(0.5825930694118142)}
+Better valid loss: 0.0007175001
+epoch: 11 time: 11.4674 
+Train Loss: 0.0006228063 0.00057653966 4.626675e-05
+Valid MSE: 0.0007147829 0.0006695049 4.527816e-05
+	 Valid preformance: {'mse': np.float64(0.0006697069388438328), 'mrrt': 0.031872972622135405, 'btl': np.float64(1.7361126079631504)}
+Test MSE: 0.00058420957 0.0005516812 3.2527903e-05
+	 Test performance: {'mse': np.float64(0.0005516113759621767), 'mrrt': 0.0503104308800145, 'btl': np.float64(1.0942401512293145)}
+Better valid loss: 0.0007147829
+epoch: 12 time: 11.8174 
+Train Loss: 0.00058299286 0.0005462085 3.6784622e-05
+Valid MSE: 0.00055524346 0.0005137668 4.1476673e-05
+	 Valid preformance: {'mse': np.float64(0.0005140428916521404), 'mrrt': 0.03246829585496007, 'btl': np.float64(2.446895337983733)}
+Test MSE: 0.00043389146 0.0003998747 3.4016644e-05
+	 Test performance: {'mse': np.float64(0.00039976710248492526), 'mrrt': 0.03287451170585422, 'btl': np.float64(0.8064936790033244)}
+Better valid loss: 0.00055524346
+epoch: 13 time: 11.9011 
+Train Loss: 0.0005546619 0.00052282505 3.183698e-05
+Valid MSE: 0.00060246576 0.000570911 3.1554748e-05
+	 Valid preformance: {'mse': np.float64(0.0005711722560857329), 'mrrt': 0.028067412489805255, 'btl': np.float64(1.6857411114906427)}
+Test MSE: 0.00047375786 0.00044832827 2.54295e-05
+	 Test performance: {'mse': np.float64(0.00044823884843211905), 'mrrt': 0.045304416578814774, 'btl': np.float64(0.822093186667189)}
+epoch: 14 time: 11.3071 
+Train Loss: 0.0005438103 0.00051431346 2.9497141e-05
+Valid MSE: 0.0005594618 0.0005205072 3.8954528e-05
+	 Valid preformance: {'mse': np.float64(0.0005208105830319382), 'mrrt': 0.03129644246717785, 'btl': np.float64(2.455500681506237)}
+Test MSE: 0.00044068455 0.0004048363 3.584809e-05
+	 Test performance: {'mse': np.float64(0.0004047142771440417), 'mrrt': 0.030789886453662912, 'btl': np.float64(0.6618598775821738)}
+epoch: 15 time: 11.9762 
+Train Loss: 0.0005227076 0.0004953955 2.7311708e-05
+Valid MSE: 0.00061487715 0.0005857922 2.9085035e-05
+	 Valid preformance: {'mse': np.float64(0.0005861190131830316), 'mrrt': 0.027492158756542026, 'btl': np.float64(1.6509936532820575)}
+Test MSE: 0.000496068 0.00047253605 2.3531751e-05
+	 Test performance: {'mse': np.float64(0.00047239466293677183), 'mrrt': 0.046863022000432096, 'btl': np.float64(1.4551185860764235)}
+epoch: 16 time: 10.9110 
+Train Loss: 0.000518863 0.0004934358 2.5427455e-05
+Valid MSE: 0.00068052986 0.00065229804 2.8231452e-05
+	 Valid preformance: {'mse': np.float64(0.000652648971762888), 'mrrt': 0.0317141319709768, 'btl': np.float64(2.703331321332371)}
+Test MSE: 0.00055513094 0.0005294725 2.565887e-05
+	 Test performance: {'mse': np.float64(0.0005293233763838991), 'mrrt': 0.03453852512781757, 'btl': np.float64(1.0828731259680353)}
+epoch: 17 time: 11.2147 
+Train Loss: 0.0005393841 0.0005146139 2.4770161e-05
+Valid MSE: 0.00052447646 0.0005005311 2.3945333e-05
+	 Valid preformance: {'mse': np.float64(0.0005008217269008829), 'mrrt': 0.02630325746395828, 'btl': np.float64(1.833209706877824)}
+Test MSE: 0.00040269826 0.00038254037 2.0157708e-05
+	 Test performance: {'mse': np.float64(0.0003824258729148206), 'mrrt': 0.044366804498402655, 'btl': np.float64(1.525554484454915)}
+Better valid loss: 0.00052447646
+epoch: 18 time: 10.9496 
+Train Loss: 0.0005280873 0.0005050641 2.3023684e-05
+Valid MSE: 0.0007437393 0.00071758754 2.6151878e-05
+	 Valid preformance: {'mse': np.float64(0.0007179504580360448), 'mrrt': 0.031347132021051625, 'btl': np.float64(2.8367988167738076)}
+Test MSE: 0.00061087176 0.0005856306 2.5240892e-05
+	 Test performance: {'mse': np.float64(0.0005854766386268736), 'mrrt': 0.03109250674407916, 'btl': np.float64(0.899968241516035)}
+epoch: 19 time: 11.0532 
+Train Loss: 0.0005165079 0.0004948821 2.1625921e-05
+Valid MSE: 0.0006169556 0.00059667765 2.0278145e-05
+	 Valid preformance: {'mse': np.float64(0.0005969459704646584), 'mrrt': 0.027415463840449416, 'btl': np.float64(2.4534042072482407)}
+Test MSE: 0.0004904399 0.0004736837 1.6756145e-05
+	 Test performance: {'mse': np.float64(0.0004735966631955876), 'mrrt': 0.04103850836582792, 'btl': np.float64(0.6948969750083052)}
+epoch: 20 time: 10.9351 
+Train Loss: 0.00052201713 0.0005017582 2.025899e-05
+Valid MSE: 0.00057842315 0.00055934425 1.9078885e-05
+	 Valid preformance: {'mse': np.float64(0.0005596148166033504), 'mrrt': 0.026662338573215986, 'btl': np.float64(2.0006437595002353)}
+Test MSE: 0.00045380087 0.00043793832 1.5862812e-05
+	 Test performance: {'mse': np.float64(0.0004378450520932549), 'mrrt': 0.037212177213586294, 'btl': np.float64(0.8114583239075728)}
+epoch: 21 time: 11.1142 
+Train Loss: 0.00050873996 0.0004900094 1.8730609e-05
+Valid MSE: 0.0006181211 0.0005903227 2.7798455e-05
+	 Valid preformance: {'mse': np.float64(0.0005906545412332085), 'mrrt': 0.028221465272175478, 'btl': np.float64(2.11037234676769)}
+Test MSE: 0.0004943939 0.0004665618 2.783236e-05
+	 Test performance: {'mse': np.float64(0.00046642188957943617), 'mrrt': 0.02211227536115708, 'btl': np.float64(0.4364422884536907)}
+epoch: 22 time: 10.6200 
+Train Loss: 0.0005187497 0.0005002477 1.8501623e-05
+Valid MSE: 0.000516858 0.00050068897 1.6169353e-05
+	 Valid preformance: {'mse': np.float64(0.0005009834961450812), 'mrrt': 0.026984934544325972, 'btl': np.float64(2.2555561548506375)}
+Test MSE: 0.0003963612 0.0003824779 1.3883086e-05
+	 Test performance: {'mse': np.float64(0.0003823578851652052), 'mrrt': 0.0374226984971932, 'btl': np.float64(0.9674740538466722)}
+Better valid loss: 0.000516858
+epoch: 23 time: 10.3321 
+Train Loss: 0.0005001261 0.00048300152 1.712439e-05
+Valid MSE: 0.00059020123 0.0005734667 1.6734473e-05
+	 Valid preformance: {'mse': np.float64(0.0005737389751848834), 'mrrt': 0.022069308361027714, 'btl': np.float64(1.6712345155829098)}
+Test MSE: 0.00046417234 0.00045051594 1.3656461e-05
+	 Test performance: {'mse': np.float64(0.0004504250093917752), 'mrrt': 0.026644643367270876, 'btl': np.float64(0.9872235263464972)}
+epoch: 24 time: 10.9647 
+Train Loss: 0.00052756676 0.0005098838 1.768278e-05
+Valid MSE: 0.00052185165 0.000504791 1.7060764e-05
+	 Valid preformance: {'mse': np.float64(0.0005050755173855203), 'mrrt': 0.01808457812060341, 'btl': np.float64(0.8210541203443427)}
+Test MSE: 0.0003987852 0.00038477182 1.4013338e-05
+	 Test performance: {'mse': np.float64(0.0003846634993425844), 'mrrt': 0.029544921748682965, 'btl': np.float64(1.268168080423493)}
+epoch: 25 time: 10.5016 
+Train Loss: 0.00050675956 0.00049069844 1.6061018e-05
+Valid MSE: 0.0005175299 0.0005038086 1.3721218e-05
+	 Valid preformance: {'mse': np.float64(0.0005040909997198566), 'mrrt': 0.020489187738721944, 'btl': np.float64(1.59438096624217)}
+Test MSE: 0.00039583634 0.00038453954 1.1296904e-05
+	 Test performance: {'mse': np.float64(0.00038443193398934536), 'mrrt': 0.03087064373646422, 'btl': np.float64(0.9648356197867543)}
+epoch: 26 time: 10.9826 
+Train Loss: 0.0005217972 0.00050523604 1.656109e-05
+Valid MSE: 0.00053993636 0.0005259308 1.4005417e-05
+	 Valid preformance: {'mse': np.float64(0.0005262380693934159), 'mrrt': 0.02343571346516438, 'btl': np.float64(2.097015872510383)}
+Test MSE: 0.00042040675 0.0004063941 1.4012896e-05
+	 Test performance: {'mse': np.float64(0.000406263584393586), 'mrrt': 0.03652583168970383, 'btl': np.float64(0.7326558017521165)}
+epoch: 27 time: 10.4353 
+Train Loss: 0.00049028784 0.00047580164 1.4486015e-05
+Valid MSE: 0.0005359331 0.0005236711 1.22620195e-05
+	 Valid preformance: {'mse': np.float64(0.00052397437372381), 'mrrt': 0.023396459647927314, 'btl': np.float64(1.7961503216065466)}
+Test MSE: 0.0004174813 0.00040680685 1.0674374e-05
+	 Test performance: {'mse': np.float64(0.000406676281275177), 'mrrt': 0.03363945371280915, 'btl': np.float64(1.1065863063558936)}
+epoch: 28 time: 10.3461 
+Train Loss: 0.00048504508 0.00047170132 1.3343507e-05
+Valid MSE: 0.00055025204 0.00053925917 1.0992898e-05
+	 Valid preformance: {'mse': np.float64(0.000539524924833599), 'mrrt': 0.024500291832871782, 'btl': np.float64(1.4582345070084557)}
+Test MSE: 0.00043478355 0.00042479852 9.9849985e-06
+	 Test performance: {'mse': np.float64(0.00042470275286071263), 'mrrt': 0.04032561561933143, 'btl': np.float64(1.1598682454787195)}
+epoch: 29 time: 10.5909 
+Train Loss: 0.00050828577 0.0004934315 1.4854747e-05
+Valid MSE: 0.0005998416 0.0005879357 1.1905945e-05
+	 Valid preformance: {'mse': np.float64(0.0005882558534181187), 'mrrt': 0.02391151575833693, 'btl': np.float64(1.8165154783055186)}
+Test MSE: 0.00047945732 0.0004677172 1.1740176e-05
+	 Test performance: {'mse': np.float64(0.00046757504488115594), 'mrrt': 0.035453250069320756, 'btl': np.float64(0.8722777582588606)}
+epoch: 30 time: 10.4070 
+Train Loss: 0.00049179565 0.00047824212 1.3553812e-05
+Valid MSE: 0.000507474 0.0004945868 1.2887085e-05
+	 Valid preformance: {'mse': np.float64(0.000494873504614547), 'mrrt': 0.0315891918414315, 'btl': np.float64(2.744009768066462)}
+Test MSE: 0.00039149562 0.00037848286 1.3012892e-05
+	 Test performance: {'mse': np.float64(0.0003783668032664357), 'mrrt': 0.02336004105538309, 'btl': np.float64(0.4779863830190152)}
+Better valid loss: 0.000507474
+epoch: 31 time: 11.1069 
+Train Loss: 0.0004963863 0.00048293796 1.3448217e-05
+Valid MSE: 0.0005659512 0.00055426685 1.1684292e-05
+	 Valid preformance: {'mse': np.float64(0.0005545427810798895), 'mrrt': 0.021193175197125592, 'btl': np.float64(1.5044933727476746)}
+Test MSE: 0.00044242476 0.00043304104 9.383803e-06
+	 Test performance: {'mse': np.float64(0.00043294699133197606), 'mrrt': 0.024654833361431344, 'btl': np.float64(0.5987007378716953)}
+epoch: 32 time: 10.2673 
+Train Loss: 0.0004829276 0.00046999866 1.292885e-05
+Valid MSE: 0.00053126435 0.00052016624 1.1098137e-05
+	 Valid preformance: {'mse': np.float64(0.0005204378161800627), 'mrrt': 0.034488446406953616, 'btl': np.float64(2.9029986413079314)}
+Test MSE: 0.0004151241 0.0004044624 1.06618645e-05
+	 Test performance: {'mse': np.float64(0.00040436177451370344), 'mrrt': 0.022170320202266856, 'btl': np.float64(0.2506145527586341)}
+epoch: 33 time: 10.4593 
+Train Loss: 0.000482007 0.00046916583 1.284059e-05
+Valid MSE: 0.00050466973 0.00049388676 1.078328e-05
+	 Valid preformance: {'mse': np.float64(0.0004941717360854853), 'mrrt': 0.02981724396006489, 'btl': np.float64(2.168285176914651)}
+Test MSE: 0.00038807472 0.00037760835 1.0466441e-05
+	 Test performance: {'mse': np.float64(0.00037749539791755334), 'mrrt': 0.03408424566179841, 'btl': np.float64(0.3330741317186039)}
+Better valid loss: 0.00050466973
+epoch: 34 time: 10.4154 
+Train Loss: 0.00049842376 0.00048437415 1.4049758e-05
+Valid MSE: 0.0005069416 0.000494294 1.2647513e-05
+	 Valid preformance: {'mse': np.float64(0.0004945817891574832), 'mrrt': 0.02814282970645383, 'btl': np.float64(2.6142366004060023)}
+Test MSE: 0.00039100714 0.0003782079 1.2799335e-05
+	 Test performance: {'mse': np.float64(0.00037809146460055556), 'mrrt': 0.02254181851855669, 'btl': np.float64(0.17967709712684155)}
+epoch: 35 time: 10.6073 
+Train Loss: 0.0004912383 0.0004782265 1.3011946e-05
+Valid MSE: 0.00064960896 0.00063596206 1.3646986e-05
+	 Valid preformance: {'mse': np.float64(0.0006362911947652557), 'mrrt': 0.025348450896961326, 'btl': np.float64(1.8619488394469954)}
+Test MSE: 0.00052415556 0.0005101283 1.4027187e-05
+	 Test performance: {'mse': np.float64(0.0005099812477410366), 'mrrt': 0.026134979139120555, 'btl': np.float64(0.0989135125419125)}
+epoch: 36 time: 10.2940 
+Train Loss: 0.0005068517 0.0004932129 1.3638669e-05
+Valid MSE: 0.00060916296 0.00059947954 9.683493e-06
+	 Valid preformance: {'mse': np.float64(0.0005997452915464251), 'mrrt': 0.033715617248233, 'btl': np.float64(2.510844309697859)}
+Test MSE: 0.0004899288 0.0004813021 8.626903e-06
+	 Test performance: {'mse': np.float64(0.00048121546153045904), 'mrrt': 0.025916518189583047, 'btl': np.float64(0.5454614878399298)}
+epoch: 37 time: 10.4560 
+Train Loss: 0.00047809654 0.00046560465 1.2491914e-05
+Valid MSE: 0.00051211496 0.00050186715 1.0247901e-05
+	 Valid preformance: {'mse': np.float64(0.0005021530220208956), 'mrrt': 0.02615195794278674, 'btl': np.float64(2.074566626048181)}
+Test MSE: 0.00039174204 0.00038332064 8.421445e-06
+	 Test performance: {'mse': np.float64(0.0003832121809466496), 'mrrt': 0.03034726013580746, 'btl': np.float64(0.6056731667486019)}
+epoch: 38 time: 10.3623 
+Train Loss: 0.00048598862 0.0004732865 1.2701912e-05
+Valid MSE: 0.0007238675 0.00071119674 1.2670695e-05
+	 Valid preformance: {'mse': np.float64(0.0007114778217338826), 'mrrt': 0.015399925457437657, 'btl': np.float64(0.8999869050749112)}
+Test MSE: 0.0005951154 0.00058509957 1.0015757e-05
+	 Test performance: {'mse': np.float64(0.0005850242416195534), 'mrrt': 0.011554355588877078, 'btl': np.float64(0.33870482962811366)}
+epoch: 39 time: 10.3290 
+Train Loss: 0.00049312285 0.00048007705 1.3045993e-05
+Valid MSE: 0.00051390607 0.000502297 1.1609108e-05
+	 Valid preformance: {'mse': np.float64(0.0005025738430361377), 'mrrt': 0.03579049890021679, 'btl': np.float64(2.988753776822705)}
+Test MSE: 0.00039940266 0.00038796748 1.1435223e-05
+	 Test performance: {'mse': np.float64(0.00038786131158571473), 'mrrt': 0.024786394540818393, 'btl': np.float64(0.36870093853212893)}
+epoch: 40 time: 10.9264 
+Train Loss: 0.0004802151 0.0004679289 1.2286255e-05
+Valid MSE: 0.0005590188 0.00054924743 9.771284e-06
+	 Valid preformance: {'mse': np.float64(0.0005495559251115767), 'mrrt': 0.029137661061489496, 'btl': np.float64(2.3336849180050194)}
+Test MSE: 0.00043990262 0.0004301999 9.702766e-06
+	 Test performance: {'mse': np.float64(0.0004300645752248117), 'mrrt': 0.035327854810171935, 'btl': np.float64(0.5708005260676146)}
+epoch: 41 time: 10.7635 
+Train Loss: 0.0004870472 0.00047439837 1.264916e-05
+Valid MSE: 0.00057125627 0.000560614 1.0642386e-05
+	 Valid preformance: {'mse': np.float64(0.0005608915715985029), 'mrrt': 0.018039811627168844, 'btl': np.float64(1.178679097269196)}
+Test MSE: 0.00044986833 0.000440751 9.117522e-06
+	 Test performance: {'mse': np.float64(0.00044065782001767063), 'mrrt': 0.02561522152522111, 'btl': np.float64(0.5274345578509383)}
+epoch: 42 time: 10.0567 
+Train Loss: 0.0004989906 0.0004857724 1.3217694e-05
+Valid MSE: 0.0005041265 0.00049460045 9.525972e-06
+	 Valid preformance: {'mse': np.float64(0.0004948901060601778), 'mrrt': 0.024334178480123942, 'btl': np.float64(2.3240535521763377)}
+Test MSE: 0.0003850888 0.0003773318 7.756952e-06
+	 Test performance: {'mse': np.float64(0.00037721689161845457), 'mrrt': 0.034631442041568726, 'btl': np.float64(0.13823908212361857)}
+Better valid loss: 0.0005041265
+epoch: 43 time: 10.1686 
+Train Loss: 0.0004816582 0.00046909455 1.2563969e-05
+Valid MSE: 0.00051058 0.0005011301 9.449955e-06
+	 Valid preformance: {'mse': np.float64(0.0005014240078030615), 'mrrt': 0.029246202100905536, 'btl': np.float64(2.2176718909177)}
+Test MSE: 0.0003932861 0.00038433727 8.9488285e-06
+	 Test performance: {'mse': np.float64(0.0003842145582062024), 'mrrt': 0.04042370791602961, 'btl': np.float64(0.66019030395546)}
+epoch: 44 time: 10.3034 
+Train Loss: 0.00047287674 0.00046139274 1.1483917e-05
+Valid MSE: 0.0005037134 0.0004945591 9.154197e-06
+	 Valid preformance: {'mse': np.float64(0.0004948490866085604), 'mrrt': 0.027966806597532815, 'btl': np.float64(2.5017565689631738)}
+Test MSE: 0.0003862303 0.00037750253 8.727797e-06
+	 Test performance: {'mse': np.float64(0.0003773852235976484), 'mrrt': 0.04877715705516782, 'btl': np.float64(1.0183827722794376)}
+Better valid loss: 0.0005037134
+epoch: 45 time: 10.1686 
+Train Loss: 0.00047045018 0.0004594661 1.0984256e-05
+Valid MSE: 0.0005567439 0.00053746713 1.9276848e-05
+	 Valid preformance: {'mse': np.float64(0.000537778767345082), 'mrrt': 0.03136226114005665, 'btl': np.float64(2.926156419736799)}
+Test MSE: 0.0004341693 0.00041475365 1.9415598e-05
+	 Test performance: {'mse': np.float64(0.0004146226322939941), 'mrrt': 0.025061334839667524, 'btl': np.float64(0.5400893748737872)}
+epoch: 46 time: 10.0689 
+Train Loss: 0.00047467087 0.00046340807 1.1262769e-05
+Valid MSE: 0.0005482355 0.00053892424 9.311269e-06
+	 Valid preformance: {'mse': np.float64(0.0005392289962018006), 'mrrt': 0.0320934619462345, 'btl': np.float64(2.560837388795335)}
+Test MSE: 0.00043096425 0.0004223403 8.623862e-06
+	 Test performance: {'mse': np.float64(0.000422206292245954), 'mrrt': 0.03618400313688379, 'btl': np.float64(0.4361337753944099)}
+epoch: 47 time: 10.1023 
+Train Loss: 0.0004870928 0.0004737962 1.3296712e-05
+Valid MSE: 0.00056432834 0.0005537468 1.0581202e-05
+	 Valid preformance: {'mse': np.float64(0.0005540547690518918), 'mrrt': 0.03363274752953911, 'btl': np.float64(2.8540045872796327)}
+Test MSE: 0.00044676743 0.00043600367 1.0763567e-05
+	 Test performance: {'mse': np.float64(0.0004358671690704897), 'mrrt': 0.02599114614696736, 'btl': np.float64(0.4009368200786412)}
+epoch: 48 time: 10.0900 
+Train Loss: 0.00048911484 0.00047690817 1.2206764e-05
+Valid MSE: 0.0005526166 0.00053682906 1.5787084e-05
+	 Valid preformance: {'mse': np.float64(0.000537117336109459), 'mrrt': 0.012395671454494935, 'btl': np.float64(0.7937533051590435)}
+Test MSE: 0.00042830646 0.00041518483 1.3121686e-05
+	 Test performance: {'mse': np.float64(0.000415085709772193), 'mrrt': 0.014410856563077393, 'btl': np.float64(0.5327542465529405)}
+epoch: 49 time: 10.1792 
+
+Best Valid performance: {'mse': np.float64(0.0004948490866085604), 'mrrt': 0.027966806597532815, 'btl': np.float64(2.5017565689631738)}
+	Best Test performance: {'mse': np.float64(0.0003773852235976484), 'mrrt': 0.04877715705516782, 'btl': np.float64(1.0183827722794376)}

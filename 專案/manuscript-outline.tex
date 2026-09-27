@@ -1,0 +1,106 @@
+%% 編譯器：XeLaTeX（Overleaf: Menu -> Compiler -> XeLaTeX）
+\documentclass[12pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,array,longtable,enumitem,hyperref}
+\onehalfspacing
+\newcommand{\path}[1]{\texttt{\detokenize{#1}}}
+
+\title{Manuscript 骨架}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+給 Overleaf 用的章節骨架。對應 R1--R4 草稿資料夾 $\to$ manuscript 章節；
+\textbf{[R2]}、\textbf{[R3]} 這類標記指向已有真實內容、可直接搬過去的地方，不用重寫。
+
+\section*{Title}
+\textit{Does the Relation, or Its Change Over Time, Predict Stock Returns?
+A Replication of Temporal Relational Ranking with a Dynamic-Relation Extension}（暫定，定稿前再調整）
+
+\section*{Abstract}
+一段（150--250 字）：問題 $\to$ 方法 $\to$ 主要發現。等 R3/R4 數字齊了再寫，是全文最後寫的部分。
+
+\section{Introduction}
+來源：\path{報告/R1_主題與動機/PLAN.md}，已有草稿，只差潤成正式段落。
+\begin{itemize}[leftmargin=*]
+  \item 1.1 背景問題：為什麼股票不該被當獨立個體預測
+  \item 1.2 本文複製的論文：Feng et al.\ (2019) RSR --- 一段話講完核心方法
+  \item 1.3 Research Questions：RQ1（複製）、RQ2（延伸：動態關聯）
+  \item 1.4 Contribution 一句話總結
+\end{itemize}
+
+\section{Related Work}
+新的一節，R1 PLAN.md 沒直接涵蓋，但素材已在手上：
+\begin{itemize}[leftmargin=*]
+  \item RSR 之外的關係型股價預測方法：HGTAN（hypergraph）、GCNET（graph conv）--- 各一段，
+        說明與本文延伸方向（動態 vs.\ 靜態關係圖）的差異
+  \item 從 \path{文獻_論文參考/related-literature-shortlist.md} 挑 2--4 篇（供應鏈關聯、跨市場資訊傳導），
+        作為「為什麼關聯會隨時間變化」這個假設的外部支持
+\end{itemize}
+
+\section{Data}
+\textbf{[R2]} 來源：\path{報告/R2_資料與EDA/eda.ipynb}，A1/A2/A3/B1 的發現直接改寫成敘述文字：
+\begin{itemize}[leftmargin=*]
+  \item 3.1 資料來源：NASDAQ 1,026 檔、\path{data/2013-01-01/}，1,246 個交易日（約 5 年，不是 README 所說的 30 年）
+  \item 3.2 關係圖：industry relation，156 檔（15\%）為 ETF/基金、非個股，已排除
+  \item 3.3 資料清理：\path{-1234} 缺值代碼、排除 ETF 後的樣本數
+\end{itemize}
+
+\section{Methods}
+\textbf{[R3]} 三個模型設定，來源：\path{報告/R3_模型與實驗設計/PROGRESS.md}：
+\begin{itemize}[leftmargin=*]
+  \item 4.1 Baseline：Rank\_LSTM（無關係圖）
+  \item 4.2 RSR：固定 industry 關係圖 + Temporal Graph Convolution（複製目標）
+  \item 4.3 本文延伸：動態關聯 --- 滾動窗口相關係數，逐窗口重估關係圖
+        （\path{preprocess/dynamic_relation.py}，已驗證機制：邊密度隨窗口從 4.6\% 變動到 33.8\%）
+\end{itemize}
+
+\section{Experiments and Results}
+\begin{itemize}[leftmargin=*]
+  \item 5.1 評估指標：MSE、MRR-Top1、模擬報酬（\path{training/evaluator.py}）
+  \item 5.2 Baseline 結果 \textbf{[R3 已有真數字]}：Test MSE 0.000377、mrrt 0.049、btl 1.02（NASDAQ 全量，50 epochs）
+  \item 5.3 RSR 結果：\textbf{待補}（embedding 已匯出，
+        \path{data/pretrain/NASDAQ_rank_lstm_seq-4_unit-32_0.npy}，差最後一次全量訓練）
+  \item 5.4 動態關聯結果：\textbf{待補}（腳本可動，尚未接進 \path{relation_rank_lstm.py}、尚未全量跑）
+  \item 5.5 Ablation 比較表：baseline / RSR / 動態，三欄同一組指標
+\end{itemize}
+
+\section{Discussion}
+\textbf{[R4]} 來源：\path{報告/R4_實證分析與結論/PLAN.md} 的三種情境（動態明顯更好 / 沒差異 / 更差），
+等 5.4 數字出來後選一種改寫：
+\begin{itemize}[leftmargin=*]
+  \item 6.1 複製是否成功：與原論文方向是否一致
+  \item 6.2 動態關聯的解讀：不管結果好壞都要講原因
+  \item 6.3 與原論文的差異：資料期間、市場範圍
+  \item 6.4 限制
+\end{itemize}
+
+\section{Conclusion and Future Work}
+一段總結，並呼應 syllabus 「Potentials of your projects」：若動態關聯有效，下一步可往 thesis/journal publication 延伸。
+
+\section*{References}
+Chicago style。\path{文獻_論文參考/} 底下的論文全部要列進來，主要複製論文以 Chicago 格式標明。
+
+\section*{現在能寫的 vs.\ 還要等的}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+章節 & 現在能不能寫 \\
+\midrule
+1 Introduction & 能寫，素材齊了 \\
+2 Related Work & 能寫，素材齊了 \\
+3 Data & 能寫，\path{eda.ipynb} 內容直接改寫 \\
+4 Methods & 能寫，三個模型設定都定案 \\
+5.2 Baseline 結果 & 能寫，真數字已有 \\
+5.3 RSR 結果 & 等全量訓練跑完 \\
+5.4 動態關聯結果 & 等 \path{relation_rank_lstm.py} 接上動態關係圖並全量跑完 \\
+6 Discussion / 7 Conclusion & 等 5.3、5.4 都有數字才能寫 \\
+Abstract & 全部寫完最後才寫 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}

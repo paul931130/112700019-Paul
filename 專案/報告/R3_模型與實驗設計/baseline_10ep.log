@@ -1,0 +1,108 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1789378145.229711   51028 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1789378146.922448   51028 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:7: The name tf.disable_v2_behavior is deprecated. Please use tf.compat.v1.disable_v2_behavior instead.
+
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tensorflow\python\compat\v2_compat.py:98: disable_resource_variables (from tensorflow.python.ops.resource_variables_toggle) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tf_keras\src\utils\version_utils.py:78: The name tf.executing_eagerly_outside_functions is deprecated. Please use tf.compat.v1.executing_eagerly_outside_functions instead.
+
+C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:89: UserWarning: `tf.nn.rnn_cell.BasicLSTMCell` is deprecated and will be removed in a future version. This class is equivalent as `tf.keras.layers.LSTMCell`, and will be replaced by that in Tensorflow 2.0.
+  lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:95: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tf_keras\src\layers\rnn\legacy_cells.py:788: calling Zeros.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:102: UserWarning: `tf.layers.dense` is deprecated and will be removed in a future version. Please use `tf.keras.layers.Dense` instead.
+  prediction = tf.layers.dense(
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\.venv\Lib\site-packages\tensorflow\python\util\dispatch.py:1264: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Deprecated in favor of operator or tf.math.divide.
+WARNING:tensorflow:From C:\Users\paul9\Desktop\115-1\機器學習與金融科技\Temporal_Relational_Stock_Ranking\training\rank_lstm.py:131: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+I0000 00:00:1789378153.953708   51028 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX_VNNI AVX_VNNI_INT8 AVX_NE_CONVERT FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1789378153.958956   51028 mlir_graph_optimization_pass.cc:437] MLIR V1 optimization pass is not enabled
+arguments: Namespace(p='../data/2013-01-01', m='NASDAQ', t='NASDAQ_tickers_qualify_dr-0.98_min-5_smooth.csv', l='4', u='32', s=1, r=0.001, a=1, gpu=False, save_emb=None, epochs=10)
+parameters: {'seq': 4, 'unit': 32, 'lr': 0.001, 'alpha': 1.0}
+#tickers selected: 1026
+single EOD data shape: (1245, 6)
+device name: /cpu:0
+Train Loss: 0.011857274 0.0114932405 0.00036402547
+Valid MSE: 0.0020993177 0.0017745391 0.00032477925
+	 Valid preformance: {'mse': np.float64(0.0017754008450571888), 'mrrt': 0.03329114469726452, 'btl': np.float64(2.660821876343107)}
+Test MSE: 0.0016692951 0.0013971966 0.0002720979
+	 Test performance: {'mse': np.float64(0.0013969240058231448), 'mrrt': 0.04062184545423466, 'btl': np.float64(1.6815723411273211)}
+Better valid loss: 0.0020993177
+epoch: 0 time: 7.0704 
+Train Loss: 0.0016138011 0.001360786 0.00025301517
+Valid MSE: 0.0016689607 0.001409821 0.00025913917
+	 Valid preformance: {'mse': np.float64(0.001410288727753303), 'mrrt': 0.03617120754029103, 'btl': np.float64(2.7832472968148068)}
+Test MSE: 0.001433388 0.0012150583 0.00021832927
+	 Test performance: {'mse': np.float64(0.001214864371528339), 'mrrt': 0.040410101987045255, 'btl': np.float64(1.4319202116457745)}
+Better valid loss: 0.0016689607
+epoch: 1 time: 6.9496 
+Train Loss: 0.0013666573 0.0011564963 0.00021016087
+Valid MSE: 0.0013610268 0.0011321668 0.00022885989
+	 Valid preformance: {'mse': np.float64(0.001132822773929912), 'mrrt': 0.034872058360689746, 'btl': np.float64(2.108542663685512)}
+Test MSE: 0.0011050305 0.00090852083 0.00019651013
+	 Test performance: {'mse': np.float64(0.0009082978769495878), 'mrrt': 0.039426171056955575, 'btl': np.float64(0.9641174576827325)}
+Better valid loss: 0.0013610268
+epoch: 2 time: 6.9058 
+Train Loss: 0.0012333081 0.0010470431 0.00018626577
+Valid MSE: 0.0012123899 0.0010070379 0.00020535152
+	 Valid preformance: {'mse': np.float64(0.0010076074830461246), 'mrrt': 0.03909375789519162, 'btl': np.float64(2.523477011534851)}
+Test MSE: 0.00094649795 0.0007746691 0.0001718285
+	 Test performance: {'mse': np.float64(0.0007744790920901179), 'mrrt': 0.03938880178675875, 'btl': np.float64(0.7679430542048067)}
+Better valid loss: 0.0012123899
+epoch: 3 time: 8.3023 
+Train Loss: 0.001097012 0.0009288535 0.00016815735
+Valid MSE: 0.0011271783 0.0009437642 0.00018341427
+	 Valid preformance: {'mse': np.float64(0.0009441609392676108), 'mrrt': 0.03995186738409643, 'btl': np.float64(2.5272350615705363)}
+Test MSE: 0.0009277027 0.0007739604 0.00015374259
+	 Test performance: {'mse': np.float64(0.000773821014337428), 'mrrt': 0.038602210617380936, 'btl': np.float64(0.552667681244202)}
+Better valid loss: 0.0011271783
+epoch: 4 time: 10.0056 
+Train Loss: 0.0010185521 0.00086725457 0.00015129642
+Valid MSE: 0.000999188 0.0008324584 0.00016672979
+	 Valid preformance: {'mse': np.float64(0.0008329109734374273), 'mrrt': 0.04303414472302736, 'btl': np.float64(2.6745179697754793)}
+Test MSE: 0.0007653404 0.0006277704 0.00013756962
+	 Test performance: {'mse': np.float64(0.0006276193809064531), 'mrrt': 0.03555751786499251, 'btl': np.float64(0.4278760275337845)}
+Better valid loss: 0.000999188
+epoch: 5 time: 9.6320 
+Train Loss: 0.00095925626 0.0008234675 0.00013578936
+Valid MSE: 0.00091846974 0.0007697344 0.00014873568
+	 Valid preformance: {'mse': np.float64(0.0007701724214110226), 'mrrt': 0.03790107102839827, 'btl': np.float64(2.2814506811555475)}
+Test MSE: 0.00068916526 0.0005690755 0.00012008967
+	 Test performance: {'mse': np.float64(0.0005689295535754699), 'mrrt': 0.03974861627456995, 'btl': np.float64(1.187334823072888)}
+Better valid loss: 0.00091846974
+epoch: 6 time: 9.4543 
+Train Loss: 0.0008537701 0.0007359363 0.000117833704
+Valid MSE: 0.00093206065 0.00080396666 0.0001280933
+	 Valid preformance: {'mse': np.float64(0.0008044145822593933), 'mrrt': 0.03750674496007845, 'btl': np.float64(1.988719927961938)}
+Test MSE: 0.0007153284 0.00061581103 9.951718e-05
+	 Test performance: {'mse': np.float64(0.0006156514387492125), 'mrrt': 0.04186913199775413, 'btl': np.float64(1.7498283825116232)}
+epoch: 7 time: 9.3990 
+Train Loss: 0.00082483236 0.00072484533 9.9986646e-05
+Valid MSE: 0.00073658425 0.0006311713 0.00010541273
+	 Valid preformance: {'mse': np.float64(0.0006315356124644005), 'mrrt': 0.0376171603410525, 'btl': np.float64(1.905704062548466)}
+Test MSE: 0.0005449372 0.00046441556 8.0521655e-05
+	 Test performance: {'mse': np.float64(0.0004642932210150455), 'mrrt': 0.04245793659122729, 'btl': np.float64(1.4850291333859786)}
+Better valid loss: 0.00073658425
+epoch: 8 time: 9.4836 
+Train Loss: 0.00071174087 0.000633591 7.8149475e-05
+Valid MSE: 0.00070521876 0.0006238731 8.134544e-05
+	 Valid preformance: {'mse': np.float64(0.0006242387090383373), 'mrrt': 0.03395412187371476, 'btl': np.float64(1.9299463973729871)}
+Test MSE: 0.0005347967 0.00047019587 6.460061e-05
+	 Test performance: {'mse': np.float64(0.0004700677594697331), 'mrrt': 0.03767003900813039, 'btl': np.float64(0.6718836578074843)}
+Better valid loss: 0.00070521876
+epoch: 9 time: 9.4817 
+
+Best Valid performance: {'mse': np.float64(0.0006242387090383373), 'mrrt': 0.03395412187371476, 'btl': np.float64(1.9299463973729871)}
+	Best Test performance: {'mse': np.float64(0.0004700677594697331), 'mrrt': 0.03767003900813039, 'btl': np.float64(0.6718836578074843)}
