@@ -1,33 +1,29 @@
-# R3 模型與實驗設計 — 大綱
+# R3: Model and Experimental Design — Outline
 
-manuscript 對應章節：Methods / Experiments（真正評分依據是 Project 40% 的 LaTeX manuscript，
-不是這個資料夾本身——見 `../../README.md`「真正的評分依據」一節）
+Corresponding manuscript section: Methods / Experiments. The 40% Project grade is based on the LaTeX manuscript, not this folder; see “What Is Actually Graded” in `../../README.md`.
 
-## 模型設定（兩組，純複製）
+## Model Setup (Two Models, Straight Replication)
 
-| # | 模型 | 關係圖 | 腳本 | 現況 |
+| # | Model | Relation graph | Script | Status |
 |---|---|---|---|---|
-| 1 | Baseline | 無 | `training/rank_lstm.py`（`Temporal_Relational_Stock_Ranking`） | 已跑通 |
-| 2 | 複製目標 RSR | 固定 industry / wiki 關係圖 + Temporal Graph Convolution | `training/relation_rank_lstm.py` | 已跑通，50 epochs 全量結果見 `PROGRESS.md` |
+| 1 | Baseline | None | `training/rank_lstm.py` (in `Temporal_Relational_Stock_Ranking`) | Runs successfully |
+| 2 | RSR replication target | Static industry/Wikidata graph + Temporal Graph Convolution | `training/relation_rank_lstm.py` | Runs successfully; full 50-epoch results are in `PROGRESS.md` |
 
-> 註：`PROGRESS.md` 裡還留著一組「動態關聯」的探索紀錄（滾動窗口相關係數，逐期重估關係圖）——已決定
-> 不放進最終 manuscript，範圍就是單純複製上面兩組模型。相關程式碼、log 檔案先保留，不用刪。
+> Note: `PROGRESS.md` retains an exploratory dynamic-relations run (rolling correlations, with a graph re-estimated over time). This is excluded from the final manuscript; the scope is a straight replication of the two models above. Keep its code and logs as historical records.
 
-## Ablation 設計（沿用原論文）
+## Ablation Design (Following the Original Paper)
 
-- 有無關係圖（baseline vs RSR）
-- industry 關係 vs wiki 關係（`-rn` 參數：`sector_industry` / `wikidata`）
-- NASDAQ vs NYSE
+- With vs. without a relation graph (baseline vs. RSR).
+- Industry vs. Wikidata relations (`-rn` parameter: `sector_industry` / `wikidata`).
 
-先把 NASDAQ + industry 關係這組做完整、跑出穩定數字，再視時間決定要不要擴大到 wiki 關係或 NYSE。
+Complete the NASDAQ + industry-relation setup first and obtain stable numbers; expand to Wikidata or NYSE only if time permits.
 
-## 評估指標
+## Evaluation Metrics
 
-沿用 `training/evaluator.py` 裡的指標（論文常用 MRR 排名指標 + IRR 投資報酬模擬）。兩組模型、
-每個 ablation 設定都要跑出同一組指標，才能放進同一張比較表。
+Use the metrics in `training/evaluator.py` (the paper's MRR ranking metric plus the IRR return simulation). Both models and each ablation setting must report the same metrics to be compared in one table.
 
-## 待辦
+## To Do
 
-- [x] 訓練 baseline 與 RSR，把 loss/指標記錄下來（50 epochs 全量結果見 `PROGRESS.md`）
-- [ ] 視時間決定是否擴大到 wiki 關係或 NYSE 的 ablation
-- [ ] 把兩組模型的比較表整理成 R3 報告的主表，對照原論文表 3
+- [x] Train the baseline and RSR and record loss/metrics (full 50-epoch results in `PROGRESS.md`).
+- [ ] Decide whether to expand the ablation to Wikidata relations or NYSE.
+- [ ] Prepare the main comparison table for the R3 report and compare it with Table 3 in the original paper.

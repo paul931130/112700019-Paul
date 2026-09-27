@@ -1,150 +1,97 @@
-# R3 進度紀錄
+# R3 Progress Log
 
-跟 `PLAN.md` 對照著看——這份記錄實際跑過什麼、卡在哪、修了什麼，數字都是真的執行結果，不是預估。
+This log records what was actually run, what failed, and what was fixed, as compared with `PLAN.md`. The reported numbers are execution results, not estimates. The dynamic-relation experiments below are retained as historical exploration; the final project scope is a straight replication.
 
-## 環境問題（新發現，已修好）
+## Environment Issue (Identified and Fixed)
 
-`專案/README.md` 原本寫「baseline RankLSTM 已實測跑通」，但這次重新跑發現**現在的環境跑不動**：
+The project README originally said the baseline RankLSTM had been verified, but a rerun in the current environment failed:
 
 ```
 AttributeError: `BasicLSTMCell` is not available with Keras 3.
 ```
 
-原因：venv 裡的 TensorFlow 版本預設用 Keras 3，但 `rank_lstm.py` / `relation_rank_lstm.py` 用的是
-`tf.compat.v1.nn.rnn_cell.BasicLSTMCell` 這種舊版 API，Keras 3 底下不支援。
+The virtual environment's TensorFlow version uses Keras 3 by default, while `rank_lstm.py` and `relation_rank_lstm.py` rely on the older `tf.compat.v1.nn.rnn_cell.BasicLSTMCell` API, which Keras 3 does not support.
 
-**修法**：執行指令前加環境變數 `TF_USE_LEGACY_KERAS=1`，讓 `tf.keras` 走舊版 Keras 2（`tf_keras` 套件，
-venv 裡已經有裝，只是沒被啟用）。加了之後 baseline 可以正常訓練。以後所有訓練指令都要帶這個環境變數：
+**Fix:** Set the `TF_USE_LEGACY_KERAS=1` environment variable before running training. This makes `tf.keras` use Keras 2 via the installed `tf_keras` package. The baseline trains successfully with this variable; include it in every training command.
 
-```bash
-TF_USE_LEGACY_KERAS=1 python rank_lstm.py -p ../data/2013-01-01 -m NASDAQ -l 4 -u 32
-```
+## Second Environment Issue: RSR Needs an Embedding File
 
-## 第二個環境問題：RSR（`relation_rank_lstm.py`）少一個檔案
+During initialization, `relation_rank_lstm.py` reads `data/pretrain/<emb_fname>.npy`, a trained sequential embedding. The official repository does not include this file; its README points to an embedding on Google Drive, posted in 2019. The link has not been checked.
 
-`relation_rank_lstm.py` 初始化時會讀 `data/pretrain/<emb_fname>.npy`（訓練好的序列 embedding），
-但這個檔案**官方 repo 沒有附**，README 只說「下載一份預訓練好的 embedding」（Google Drive 連結，
-2019 年放的，沒去試連結還有沒有效）。
+**Approach:** Rather than depend on an external file of uncertain availability, modify `training/rank_lstm.py` to use the final weights to calculate and save the sequence embedding for each date and stock after baseline training. This adds the `--save_emb <path>` option. It was verified on a 30-stock sample: output shape `(30, 1245, 16)`, with values at 1241 of 1245 time points, matching the offset range in `get_batch`.
 
-**做法**：與其依賴一個來源不明、可能失效的外部檔案，直接修改 `training/rank_lstm.py`，讓它在
-baseline 訓練完之後，用最終權重把每一天、每支股票的序列 embedding 都算出來並存檔（新增
-`--save_emb <path>` 參數）。已經在 30 檔股票的小樣本上驗證過：輸出 shape `(30, 1245, 16)`，
-1241/1245 個時間點有值（跟 `get_batch` 的 offset 範圍精確對上，見 `rank_lstm.py` 裡的邏輯）。
+## Runs Completed
 
-## 目前跑過的東西
-
-| 項目 | 指令 | 狀態 |
+| Item | Command/configuration | Status |
 |---|---|---|
-| Baseline 全量訓練（NASDAQ，1026 檔，50 epochs） | `TF_USE_LEGACY_KERAS=1 python rank_lstm.py -p ../data/2013-01-01 -m NASDAQ -l 4 -u 32` | ✅ 已完成，~10 秒/epoch，見 `baseline_train.log` |
-| 序列 embedding 匯出（30 檔小樣本，驗證用） | 同上 + `--save_emb` | ✅ 已完成，shape 正確 |
-| 動態關聯圖產生器（30 檔小樣本，驗證用） | `python preprocess/dynamic_relation.py -t data/NASDAQ_smoke_test_30.csv -w 60` | ✅ 已完成，21 個 60 天窗口 |
+| Full baseline training (NASDAQ, 1,026 stocks, 50 epochs) | `TF_USE_LEGACY_KERAS=1 python rank_lstm.py -p ../data/2013-01-01 -m NASDAQ -l 4 -u 32` | Completed; about 10 seconds per epoch; see `baseline_train.log` |
+| Sequence-embedding export (30-stock sample) | Same command plus `--save_emb` | Completed; output shape verified |
+| Dynamic-relation graph generator (30-stock sample) | `python preprocess/dynamic_relation.py -t data/NASDAQ_smoke_test_30.csv -w 60` | Completed; 21 rolling windows |
 
-## 動態關聯：初步證據（30 檔股票，21 個 60 天窗口）
+## Dynamic Relations: Initial Evidence (30 Stocks, 21 60-Day Windows)
 
-`preprocess/dynamic_relation.py`（新寫的腳本，`../../README.md` 延伸方向的實作）用滾動 60 天窗口算
-報酬相關係數矩陣、`|corr| > 0.5` 二值化成關係圖，輸出格式跟原本 `_industry_relation.npy` 一樣
-`(n, n, 1)`，可以直接餵給 `relation_rank_lstm.py` 現有的 `load_relation_data`。
+The new `preprocess/dynamic_relation.py` script computes rolling 60-day return-correlation matrices and thresholds them to binary graphs using `|corr| > 0.5`. It outputs the same `(n, n, 1)` shape as `_industry_relation.npy`, which can be loaded by the existing `load_relation_data` function.
 
-**邊密度（有連結的股票對比例）在 21 個窗口間從 4.6% 跳到 33.8%（7 倍差距）**——這是本專案要驗證的
-假設的第一個直接證據：股票間的關聯強度真的隨時間大幅變動，不是 RSR 論文假設的固定常數。下一步是把
-這個腳本跑在全量股票上，並實際訓練「動態關聯版」的 `relation_rank_lstm.py` 跟固定關係圖版比較。
+**Edge density (the proportion of linked stock pairs) ranged from 4.6% to 33.8% across the 21 windows**, a sevenfold range. This is initial evidence for the hypothesis that cross-stock relation strength changes over time rather than remaining fixed. The initial plan was to run this on all stocks and compare a dynamic-relation model with the static-graph model.
 
-## Baseline 全量結果（NASDAQ，1026 檔，seq=4，unit=32，50 epochs，CPU）
+## Dynamic Relations: Full-Sample Graphs (NASDAQ, 1,026 Stocks, 21 Windows)
 
-```
-Best Valid performance: {'mse': 0.0004948, 'mrrt': 0.02797, 'btl': 2.5018}
-Best Test  performance: {'mse': 0.0003774, 'mrrt': 0.04878, 'btl': 1.0184}
-```
+On all 1,026 stocks, the 21 windows had edge density from **3.6% to 22.5%**. This is consistent with the small-sample finding, with a somewhat narrower range: relation strength also changes substantially at full scale.
 
-- `mse`：預測報酬與真實報酬的均方誤差。
-- `mrrt`：Mean Reciprocal Rank of correct Top-1（排名指標，越高代表模型排出的第一名越常是真的漲最多）。
-- `btl`：Back-Testing Long strategy 的模擬報酬（買進模型排名最前的股票）。
+## Dynamic-Relation Model
 
-這是複製論文表 3 的 baseline 對照組（原論文的 Rank_LSTM baseline 是拿來跟 RSR 比較用的下限）。
+The experimental `dynamic_relation_rank_lstm.py` replaces the relation graph in `relation_rank_lstm.py` from a fixed `tf.constant` to a `tf.placeholder`. At each training offset, it supplies the relation matrix for the corresponding 60-day window. The rest of the architecture, loss, and evaluation match `relation_rank_lstm.py` so the comparison isolates changes in the graph over time. The complete 50-epoch run was verified on a 30-stock sample.
 
-## 動態關聯：全量結果（NASDAQ，1026 檔，21 個 60 天窗口）
+## Three-Model Comparison (10 Epochs)
 
-`preprocess/dynamic_relation.py` 跑在全量 1026 檔股票上：邊密度在 21 個窗口間從 **3.6% 到 22.5%**
-（跟 30 檔小樣本的結論一致，數字略溫和一點）——確認全量規模下，關聯強度一樣隨時間大幅變動，不是
-固定常數。
+The full RSR run at 1,026 stocks processes a 1,026-by-1,026 relation matrix each epoch and takes about 35 seconds per epoch. To make a three-model comparison feasible, all three models were run for **10 epochs** using the same embedding; an `--epochs` option was added to the scripts.
 
-## `dynamic_relation_rank_lstm.py`（新腳本，動態關聯版模型）
+| Model | Relation graph | Test MSE | Test mrrt | Test btl | Seconds/epoch |
+|---|---|---:|---:|---:|---:|
+| Baseline (Rank_LSTM) | None | 0.0004701 | 0.0377 | 0.672 | ~9.5 |
+| RSR | Static industry graph | **0.0003966** | 0.0416 | 0.476 | ~35.5 |
+| Dynamic relations | 60-day rolling correlations | 0.0004073 | **0.0475** | **0.869** | ~12.6 |
 
-把 `relation_rank_lstm.py` 的關係圖從 `tf.constant`（訓練全程寫死一個關係矩陣）改成
-`tf.placeholder`，每個訓練 offset 依日期落在哪個 60 天窗口，餵不同的關係矩陣進去。除了這一點，
-架構、loss、evaluation 完全跟 `relation_rank_lstm.py` 一樣，這樣效能差異才單純反映「關係圖會不會
-隨時間變」，不會混進其他架構差異。30 檔小樣本上驗證過完整跑得動、50 epochs 無錯誤。
+**The apparent advantage at 10 epochs was later contradicted by the full run.** At 10 epochs, RSR had the lowest MSE, while dynamic relations had the best mrrt and btl. That suggested a neat story in which the fixed graph predicted values better and the dynamic graph ranked stocks better. The story did not hold after 50 epochs.
 
-## 三組模型比較（NASDAQ，1026 檔，seq=4，unit=32，10 epochs，同一個 embedding，CPU）
+## Final Three-Model Comparison (50 Epochs)
 
-RSR 全量訓練原本設定 50 epochs 太慢（每 epoch 要處理 1026×1026 的關係矩陣，~35 秒/epoch，50 epochs
-等於要等快半小時），改成三個模型都跑 **10 epochs** 做公平比較，幫 `rank_lstm.py` /
-`relation_rank_lstm.py` / `dynamic_relation_rank_lstm.py` 都加了 `--epochs` 參數。
+NASDAQ, 1,026 stocks, `seq=4`, `unit=32`, same embedding, CPU:
 
-| 模型 | 關係圖 | Test MSE | Test mrrt | Test btl | 秒/epoch |
-|---|---|---|---|---|---|
-| Baseline (Rank_LSTM) | 無 | 0.0004701 | 0.0377 | 0.672 | ~9.5 |
-| RSR（複製目標） | 固定 industry 關係圖 | **0.0003966** | 0.0416 | 0.476 | ~35.5 |
-| 動態關聯（本專案延伸） | 60 天滾動窗口相關係數 | 0.0004073 | **0.0475** | **0.869** | ~12.6 |
+| Model | Relation graph | Test MSE | Test mrrt | Test btl |
+|---|---|---:|---:|---:|
+| Baseline (Rank_LSTM) | None | 0.0003774 | **0.0488** | 1.018 |
+| RSR (replication target) | Static industry graph | 0.0003774 (tied) | 0.0276 | **1.130** |
+| Dynamic relations (exploratory extension) | 60-day rolling correlations | 0.0003778 | 0.0288 | 0.861 |
 
-**10-epoch 當下的解讀**（已被下面完整訓練的結果推翻，留著當對照）：MSE 上固定 RSR 略贏，但 mrrt、
-btl 這兩個更貼近實際交易目標的指標，動態關聯版都是三組裡最高的——看起來像是「固定關係圖猜得準數值，
-動態關聯圖排得對順序」的漂亮故事。**這個故事在練滿 50 epochs 之後不成立**，見下。
+After 50 epochs, the results differ from the 10-epoch comparison:
 
-## 三組模型最終比較（NASDAQ，1026 檔，seq=4，unit=32，**50 epochs**，同一個 embedding，CPU）
+- **MSE is nearly tied across all three models.** Baseline and RSR are identical to seven decimal places (0.0003774); the dynamic model is close (0.0003778). Under this setup, adding a graph made little difference to MSE.
+- **The baseline without a relation graph has the highest mrrt** (0.0488). RSR and the dynamic model are roughly half as high (0.0276 and 0.0288). The dynamic model's 10-epoch advantage disappeared after training longer.
+- **Static-graph RSR has the highest btl** (1.130). The dynamic model is lowest (0.861), opposite the initial hypothesis.
+- **Interpretation at this stage:** The 60-day rolling Pearson correlation graph, thresholded at `|corr| > 0.5`, did not support RQ2 after full training. The 10-epoch advantage appears to have been a pre-convergence artifact. Candidate explanations included noisy rolling correlations and an arbitrary threshold, window boundaries that did not align with the train/validation/test split, and the possibility that the static industry graph was already sufficient at this scale.
 
-| 模型 | 關係圖 | Test MSE | Test mrrt | Test btl |
-|---|---|---|---|---|
-| Baseline (Rank_LSTM) | 無 | 0.0003774 | **0.0488** | 1.018 |
-| RSR（複製目標） | 固定 industry 關係圖 | 0.0003774（打平） | 0.0276 | **1.130** |
-| 動態關聯（本專案延伸） | 60 天滾動窗口相關係數 | 0.0003778 | 0.0288 | 0.861 |
+## Robustness Check 1: Aligning the 60-Day Windows to Split Boundaries
 
-**訓練滿 50 epochs、收斂之後，方向跟 10-epoch 版完全不一樣**：
+The dynamic graph script was changed so windows are formed separately within the train (days 0–755), validation (756–1007), and test (1008–1245) periods, preventing any window from crossing a validation/test boundary. The script writes `NASDAQ_boundaries.json` with each window's date range. The model uses this file and binary search to select a graph for each offset instead of assuming windows start uniformly at day zero via `offset // window_days`.
 
-- **MSE 幾乎三組打平**——baseline 跟 RSR 到小數點後七位都一樣（0.0003774），動態版只差一點點
-  （0.0003778）。收斂後，有沒有關係圖對 MSE 這個指標幾乎沒有差別，RQ1「關係資訊能提升 MSE」在這個
-  設定下**不成立**。
-- **mrrt 反過來是沒有關係圖的 baseline 最高**（0.0488），RSR 跟動態版都掉到一半左右（0.0276、
-  0.0288）。10-epoch 時動態版 mrrt 最高（0.0475）那個結果，在收斂後完全消失。
-- **btl 是固定關係圖的 RSR 最高**（1.130），動態版反而是三組裡最低（0.861）。這跟原本假設的方向
-  （動態關聯應該更好）相反。
-- **結論（誠實版）**：這次的動態關聯做法（60 天滾動 Pearson 相關係數、`|corr|>0.5` 二值化）在完整
-  訓練後，**沒有支持 RQ2**。10-epoch 時看到的優勢是訓練還沒收斂時的雜訊，不是真實效果。這本身是一個
-  可以寫進 R4 的合理發現——可能的原因：(a) 滾動相關係數雜訊太大，二值化閾值 0.5 太隨意；(b) 60 天
-  窗口跟訓練的 date-split 對不齊，導致同一個關係圖被用在橫跨 valid/test 邊界的日期上；(c) 這個資料
-  集規模下，固定的產業關係本來就已經接近「夠用」，動態版增加的雜訊蓋過了它增加的訊息量。
+The full dataset produced 22 windows (one more than before because each split has its own remainder), with edge density from 3.3% to 20.6%. This remained consistent with the earlier finding that relation strength changes over time.
 
-## 穩健性檢查 #1：對齊 60 天窗口邊界（候選解釋 (b)，已驗證是真的）
+**The aligned-window, 50-epoch result changed:**
 
-`dynamic_relation.py` 改成 split-aligned 版：窗口不再從第 0 天均勻切，而是分別在
-train（0–755）、valid（756–1007）、test（1008–1245）三段內各自切 60 天窗口，任何一個窗口都不會
-橫跨 valid/test 邊界。同時輸出 `NASDAQ_boundaries.json` 記錄每個窗口的實際日期範圍，
-`dynamic_relation_rank_lstm.py` 也改用這個檔案（`bisect` 查表）決定每個訓練 offset 該用哪個窗口的
-關係圖，不再用 `offset // window_days` 這種假設窗口從第 0 天均勻排列的算法。
+| Model | Test MSE | Test mrrt | Test btl |
+|---|---:|---:|---:|
+| Baseline (Rank_LSTM) | 0.0003774 | 0.0488 | 1.018 |
+| RSR (static relation graph) | 0.0003774 | 0.0276 | 1.130 |
+| Dynamic relations (unaligned windows, earlier version) | 0.0003778 | 0.0288 | 0.861 |
+| **Dynamic relations (aligned windows)** | 0.0003776 | 0.0311 | **1.214** |
 
-全量重新產生：22 個窗口（原本 21 個，因為三段各自切多出來的零頭），邊密度 3.3%～20.6%，跟未對齊版
-結論一致（關聯強度還是大幅變動）。
+After alignment, dynamic-model btl moved from the lowest result (0.861) to the highest (1.214), and mrrt rose from 0.0288 to 0.0311, though it remained below the baseline's 0.0488. MSE barely changed. This supports the candidate explanation that the train/validation/test boundary misalignment was one real cause of the earlier reduction in performance.
 
-**重跑 50 epochs 的結果，對齊窗口之後確實變了**：
+The revised exploratory interpretation was that dynamic relations outperformed the static graph and baseline on **simulated return (btl)**, but still trailed the baseline on **ranking accuracy (mrrt)**. This may indicate that the dynamic graph helps select high-return stocks for a top-ranked strategy without improving the full ranking order.
 
-| 模型 | Test MSE | Test mrrt | Test btl |
-|---|---|---|---|
-| Baseline | 0.0003774 | **0.0488** | 1.018 |
-| RSR（固定關係圖） | 0.0003774 | 0.0276 | 1.130 |
-| 動態關聯（窗口未對齊，舊版） | 0.0003778 | 0.0288 | 0.861 |
-| **動態關聯（窗口對齊後，新版）** | 0.0003776 | 0.0311 | **1.214** |
+## Remaining Checks
 
-對齊之後,動態版的 **btl 從三組最低（0.861）變成三組最高（1.214）**,mrrt 也從 0.0288 進步到
-0.0311（但仍低於 baseline 的 0.0488）,MSE 幾乎沒變。**候選解釋 (b) 得到證實**：窗口沒對齊
-valid/test 切分確實是壓低動態版表現的真實原因之一,不是無關緊要的細節。
-
-修正後的結論：動態關聯在**模擬報酬（btl）**上明顯優於固定關係圖和 baseline,但在**排名準確度
-（mrrt）**上仍然不如沒有關係圖的 baseline——這是一個比之前「動態關聯全面較差」更細緻、也更有趣的
-故事:動態關係圖可能學到了「何時該重壓哪支股票」（影響 btl 這種依賴排名前幾名的策略型指標）,但沒有
-學到「精確排出完整順序」（mrrt 要求的是最頂端那一名要對）。
-
-## 還沒做的
-
-- [ ] 拿同一組結果重複第二次（換個隨機種子）確認上面 50-epoch 的方向不是單次隨機性造成的
-- [ ] 試試看不同的滾動窗口長度、threshold，或用 DTW 相似度取代 Pearson 相關係數，確認 btl 優勢對做法穩不穩健
-- [ ] 深入分析為什麼動態版 btl 贏、mrrt 卻輸——這兩個指標為什麼會不一致，值得在 R4 額外討論一段
+- [ ] Repeat the same experiment with another random seed to see whether the 50-epoch direction is stable.
+- [ ] Try other rolling-window lengths and thresholds, or use DTW similarity instead of Pearson correlation, to test whether the btl result is robust to the graph-construction method.
+- [ ] Analyze why dynamic relations may improve btl while reducing mrrt; the two metrics reward different outcomes and may merit separate discussion in R4.

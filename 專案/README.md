@@ -1,37 +1,34 @@
-# 機器學習與金融科技 — 期末專題
+# Machine Learning & FinTech — Final Project
 
-## 複製論文 (Replicating a High-Quality Paper)
+## Replicating a High-Quality Paper
 
 Feng, Fuli, Xiangnan He, Xiang Wang, Cheng Luo, Yiqun Liu, and Tat-Seng Chua. "Temporal Relational Ranking for Stock Prediction." *ACM Transactions on Information Systems* 37, no. 2 (2019): Article 27. https://doi.org/10.1145/3309547.
 
-- 期刊等級：交大資工 A 級期刊清單（`共用參考資料` 或課程 GitHub `journal-ranking/交大資工A級期刊_20200910Updated.xlsx` 第 11 筆）
-- 官方程式碼：https://github.com/fulifeng/Temporal_Relational_Stock_Ranking
-- 本機複製環境：`../Temporal_Relational_Stock_Ranking`（已 clone、已修補 TF1→TF2 相容性、venv 已建立、baseline RankLSTM 已實測跑通）
-- **跑訓練指令前務必加 `TF_USE_LEGACY_KERAS=1`**（例如
-  `TF_USE_LEGACY_KERAS=1 python rank_lstm.py -p ../data/2013-01-01 -m NASDAQ -l 4 -u 32`），
-  不然會在 `BasicLSTMCell` 那行噴 `AttributeError: BasicLSTMCell is not available with Keras 3`。
-  細節見 `報告/R3_模型與實驗設計/PROGRESS.md`。
+- Journal tier: NYCU CS A-tier journal list (`共用參考資料` or the course GitHub's `journal-ranking/交大資工A級期刊_20200910Updated.xlsx`, entry 11)
+- Official code: https://github.com/fulifeng/Temporal_Relational_Stock_Ranking
+- Local replication environment: `../Temporal_Relational_Stock_Ranking` (cloned, TF1→TF2 compatibility patched, venv set up, baseline RankLSTM verified working)
+- **Always set `TF_USE_LEGACY_KERAS=1` before running any training command** (e.g.
+  `TF_USE_LEGACY_KERAS=1 python rank_lstm.py -p ../data/2013-01-01 -m NASDAQ -l 4 -u 32`),
+  otherwise it fails at the `BasicLSTMCell` line with `AttributeError: BasicLSTMCell is not available with Keras 3`.
+  Details in `報告/R3_模型與實驗設計/PROGRESS.md`.
 
-## 論文摘要與方法
+## Paper Summary and Method
 
-提出 Relational Stock Ranking (RSR) 模型與 Temporal Graph Convolution，將股票間的關係（產業關係、Wikidata 關係）以「時間敏感」的方式編碼進排序任務，用於預測股票隔日報酬排名，取代過去把股票視為互相獨立個體的做法。
+Proposes the Relational Stock Ranking (RSR) model with Temporal Graph Convolution, encoding relations between stocks (industry relation, Wikidata relation) into a ranking task in a time-sensitive way, to predict the relative ranking of next-day stock returns — replacing the prior approach of treating stocks as independent entities.
 
-## 真正的評分依據（以 syllabus + 官方 GitHub 為準）
+## What Is Actually Graded (per syllabus + official GitHub)
 
-`報告/R1~R4` 底下原本寫「對應評分表項目」，那張評分表查無出處——兩份 syllabus
-（`slides/20260907-Ch00-Syllabus.pdf`、`slides/20260914-Ch00-Syllabus.pdf`）和官方 GitHub
-（`202609-ML-FinTech/00-course-info`，2026-09-14 用 GitHub API 直接查證）都沒有這張表，也沒有任何
-「R1/R2/R3/R4 分節評分」的說法。以下是查證過的真實依據：
+The `報告/R1~R4` folders originally referenced a "corresponding grading rubric item," but that rubric could not be traced to any source — neither syllabus (`slides/20260907-Ch00-Syllabus.pdf`, `slides/20260914-Ch00-Syllabus.pdf`) nor the official GitHub (`202609-ML-FinTech/00-course-info`, verified directly via the GitHub API on 2026-09-14) contains such a table, nor any statement about "R1/R2/R3/R4 each being graded separately." Below is the verified, actual basis:
 
-**Grading policy**（`20260907-Ch00-Syllabus.pdf` p.6）：
+**Grading policy** (`20260907-Ch00-Syllabus.pdf` p.6):
 
-| 項目 | % | 內容 |
+| Item | % | Content |
 |---|---|---|
-| Participation | 20% | 課堂練習、簡報（project/MFS/HW）、課堂總結，會 cold call |
-| **Project** | **40%** | **根據 manuscript（LaTeX 撰寫）評分**，另需準備簡報用的 slides |
-| Exam | 40% | 課堂考，可帶一張 A4 雙面小抄 |
+| Participation | 20% | In-class exercises, presentations (project/MFS/HW), class wrap-ups, subject to cold calls |
+| **Project** | **40%** | **Graded on the manuscript (written in LaTeX)**, plus slides for the presentation |
+| Exam | 40% | In-class exam, one double-sided A4 cheat sheet allowed |
 
-**你的個人 repo 結構**（同上 p.5）：
+**Your personal repo structure** (same source, p.5):
 
 ```
 202609-ML-FinTech-<studentID>-<nickname>/
@@ -39,61 +36,55 @@ Feng, Fuli, Xiangnan He, Xiang Wang, Cheng Luo, Yiqun Liu, and Tat-Seng Chua. "T
 └── Project/   ← README.md, logs, snapshots, data and codes
 ```
 
-**Project 的 README.md 要包含**（p.10 "Your GitHub Repo"）：GitHub 頁面連結、Chicago style 引用複製的
-論文、Overleaf manuscript 連結、Canva slides 連結、"Code"（Jupyter Notebook）、"Data"（資料集或連結）。
+**The Project's README.md must include** (p.10 "Your GitHub Repo"): a link to your GitHub page, a Chicago-style citation of the replicated paper, a link to the Overleaf manuscript, a link to the Canva slides, "Code" (Jupyter Notebook), and "Data" (dataset or link).
 
-**真正被評分的是 Project 40% 那份 LaTeX manuscript**，不是這個資料夾本身。`報告/R1~R4` 底下的內容
-（動機、EDA、模型實驗、結論）都還是 manuscript 需要的真材料，只是拿掉了它們「各自佔幾 % 評分表」的
-錯誤框架——四個資料夾現在當成寫 manuscript 前的草稿分節就好：
+**What is actually graded is the Project's 40% LaTeX manuscript**, not this folder itself. The content under `報告/R1~R4` (motivation, EDA, model experiments, conclusion) is still real material the manuscript needs — the only thing dropped is the mistaken framing that each folder is "worth X% of a grading rubric." The four folders are now just draft sections written before assembling the manuscript:
 
-| 資料夾 | manuscript 對應章節 | 內容 |
+| Folder | Corresponding manuscript section | Content |
 |---|---|---|
-| `報告/R1_主題與動機` | Introduction / Motivation | 論文介紹、為何選這篇、RQ1/RQ2 |
-| `報告/R2_資料與EDA` | Data | 原始資料說明、EDA notebook（`eda.ipynb`） |
-| `報告/R3_模型與實驗設計` | Methods / Experiments | Baseline (Rank_LSTM) vs. RSR，含 ablation（有無關係圖、industry vs wiki） |
-| `報告/R4_實證分析與結論` | Results / Conclusion | 結果解讀、與原論文比較、延伸討論 |
-| `文獻_論文參考` | References | 複製論文全文、相關文獻筆記 |
-| `程式碼` | — | 指向 `../Temporal_Relational_Stock_Ranking`，或放置整理過的 Jupyter Notebook 版本 |
-| `資料` | — | 資料集或資料連結說明 |
+| `報告/R1_主題與動機` | Introduction / Motivation | Paper introduction, why this paper, RQ1 |
+| `報告/R2_資料與EDA` | Data | Raw data description, EDA notebook (`eda.ipynb`) |
+| `報告/R3_模型與實驗設計` | Methods / Experiments | Baseline (Rank_LSTM) vs. RSR, with ablation (relation graph present/absent, industry vs. wiki) |
+| `報告/R4_實證分析與結論` | Results / Conclusion | Interpretation of results, comparison with the original paper, discussion |
+| `文獻_論文參考` | References | Full text of the replicated paper, related-literature notes |
+| `程式碼` | — | Points to `../Temporal_Relational_Stock_Ranking`, or holds a cleaned-up Jupyter Notebook version |
+| `資料` | — | Dataset or dataset-link description |
 
-## 範圍（已定案）：單純複製論文，不做延伸
+## Scope (decided): a straight replication, no extension
 
-原本考慮加一組「動態跨股票關聯」的延伸實驗（見 `報告/R3_模型與實驗設計/PROGRESS.md` 裡的探索紀錄），
-但已決定**不做**——本專案就是單純複製 Feng et al. (2019) 的 RSR，不加新方法。動態關聯相關的程式碼
-（`preprocess/dynamic_relation.py`、`training/dynamic_relation_rank_lstm.py`）與 log 檔案先保留在原地，
-當作探索過程留存，但不會出現在最終 manuscript 的結論裡。
+A "dynamic cross-stock relation" extension was considered at one point (see the exploration notes in `報告/R3_模型與實驗設計/PROGRESS.md`), but has been **dropped** — this project is a straight replication of Feng et al. (2019)'s RSR, with no new method added. The dynamic-relation code (`preprocess/dynamic_relation.py`, `training/dynamic_relation_rank_lstm.py`) and its log files are left in place as a record of that exploration, but do not appear in the final manuscript's conclusions.
 
-## 資料
+## Data
 
-- **Sequential Data**：NASDAQ/NYSE 逾 8,000 檔股票 30 年歷史日線資料（open, high, low, close, volume），來源 Google Finance，論文使用 2013-01-01 起的處理後版本
-- **Industry Relation**：NASDAQ/NYSE 股票的產業關係（sector/industry）
-- **Wiki Relation**：從 Wikidata 抽取的公司關係
-- 資料已隨官方 repo 提供，路徑：`../Temporal_Relational_Stock_Ranking/data/`
+- **Sequential Data**: 30 years of historical daily data (open, high, low, close, volume) for 8,000+ NASDAQ/NYSE stocks, sourced from Google Finance; the paper uses the processed version starting 2013-01-01
+- **Industry Relation**: sector/industry relations among NASDAQ/NYSE stocks
+- **Wiki Relation**: company relations extracted from Wikidata
+- Data is provided with the official repo, at: `../Temporal_Relational_Stock_Ranking/data/`
 
 ## Code
 
-Python，Jupyter Notebook（README 要求交 Jupyter Notebook，原始訓練腳本為 `.py`，另外整理成 `.ipynb`）：
-- `training/rank_lstm.py`：Baseline，Rank_LSTM（不含關係圖）
-- `training/relation_rank_lstm.py`：完整模型，Relational Stock Ranking (RSR)
+Python, Jupyter Notebook (the README requires a Jupyter Notebook submission; the original training scripts are `.py`, additionally cleaned up into `.ipynb`):
+- `training/rank_lstm.py`: baseline, Rank_LSTM (no relation graph)
+- `training/relation_rank_lstm.py`: full model, Relational Stock Ranking (RSR)
 
 ## Manuscript / Slides
 
-- Overleaf：https://www.overleaf.com/read/fjkrqhnbqwgc#e5d02b
-  （這是唯讀分享連結；如果還沒把 `venteng@gmail.com` 加進協作者名單，記得另外處理，
-  唯讀連結不等於分享給老師）
-- Canva Slides：https://canva.link/psyac0w98zuyn5l
-  （先用這份交件，等老師/助教開放 `20260920-template-ML&FinTech` 模板
-  （https://www.canva.com/design/DAHROU_9H8o/...）的編輯權限後，再換成模板複本。
-  記得分享至 venteng@gmail.com）
-  - 備用：https://canva.link/a6bv496rvwdfbl5（AI 新建的純白底極簡版，R1 內容已填完整，
-    R2/R3/R4 是佔位內容，模仿模板排版邏輯但沒有 NYCU 校徽）
+- Overleaf: https://www.overleaf.com/read/fjkrqhnbqwgc#e5d02b
+  (this is a read-only share link; if `venteng@gmail.com` has not been added as a collaborator yet,
+  that still needs to be done separately — a read-only link does not count as sharing with the instructor)
+- Canva Slides: https://canva.link/psyac0w98zuyn5l
+  (using this for submission for now; once the instructor/TA grants edit access to the
+  `20260920-template-ML&FinTech` template (https://www.canva.com/design/DAHROU_9H8o/...),
+  switch to a copy of that template instead.
+  Remember to share it with venteng@gmail.com)
+  - Backup: https://canva.link/a6bv496rvwdfbl5 (AI-generated plain-white minimalist version;
+    R1 content is fully filled in, R2/R3/R4 are placeholders; mimics the template's layout logic
+    but has no NYCU logo)
 
 ## GitHub
 
-- 學號：112700019・暱稱：Paul
-- 個人 repo（待建立、待 push）：`202609-ML-FinTech-112700019-Paul`
-- 本機已 `git init`，`homework/` 與 `專案/` 兩個資料夾已納入版控並完成第一次 commit
-  （`Temporal_Relational_Stock_Ranking/`、`共用參考資料`、`專案/程式碼/GCNET-Code`、
-  `專案/程式碼/HGTAN` 是外部 clone，已在 `.gitignore` 排除，不算進個人 repo）
-- 待補：在 GitHub 建立 `202609-ML-FinTech-112700019-Paul` repo 後，把本機 commit push 上去，
-  再把這裡的連結換成實際網址
+- Student ID: 112700019 · Nickname: Paul
+- Personal repo: https://github.com/paul931130/112700019-Paul
+- Pushed: `homework/` and `專案/` are tracked and pushed
+  (`Temporal_Relational_Stock_Ranking/`, `共用參考資料`, `專案/程式碼/GCNET-Code`,
+  `專案/程式碼/HGTAN` are external clones, excluded via `.gitignore`, not part of the personal repo)

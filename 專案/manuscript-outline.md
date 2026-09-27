@@ -1,93 +1,85 @@
-# Manuscript 骨架
+# Manuscript Outline
 
-給 Overleaf 用的章節骨架。對應 R1~R4 草稿資料夾 → manuscript 章節；`[R2]`/`[R3]` 這種標記指向
-已經有真實內容可以直接搬過去的地方，不用重寫。
+Chapter outline for Overleaf. It maps the R1–R4 draft folders to manuscript sections. Tags such as [R2] and [R3] point to existing material that can be adapted directly rather than rewritten from scratch.
 
 ## Title
 
-*Does the Relation, or Its Change Over Time, Predict Stock Returns? A Replication of
-Temporal Relational Ranking with a Dynamic-Relation Extension*
-（暫定，定稿前再調整）
+*Does the Relation, or Its Change Over Time, Predict Stock Returns? A Replication of Temporal Relational Ranking with a Dynamic-Relation Extension*
+(Provisional; revise before finalizing.)
 
 ## Abstract
 
-一段（150–250 字）：問題 → 方法 → 主要發現。等 R3/R4 數字齊了再寫，是全文最後寫的部分。
+One paragraph (150–250 words): question → method → main findings. Write this after the R3/R4 results are final; the abstract is usually the last section completed.
 
 ## 1. Introduction
 
-來源：`報告/R1_主題與動機/PLAN.md`，內容已經有草稿，只差潤成正式段落。
+Source: `報告/R1_主題與動機/PLAN.md`. A draft exists and needs polishing into formal prose.
 
-- 1.1 背景問題：為什麼股票不該被當獨立個體預測
-- 1.2 本文複製的論文：Feng et al. (2019) RSR — 一段話講完核心方法
-- 1.3 Research Questions：RQ1（複製）、RQ2（延伸：動態關聯）
-- 1.4 Contribution 一句話總結
+- 1.1 Motivation: Why should stocks not be modeled as independent entities?
+- 1.2 Replicated paper: Feng et al. (2019), RSR — summarize the core method in one paragraph.
+- 1.3 Research questions: RQ1 (replication), RQ2 (extension: dynamic relations).
+- 1.4 One-sentence summary of the contribution.
 
 ## 2. Related Work
 
-新的一節，R1 PLAN.md 沒直接涵蓋，但素材已經在手上：
+A new section not directly covered by R1 PLAN.md, but source material is available:
 
-- RSR 之外的關係型股價預測方法：HGTAN（hypergraph）、GCNET（graph conv）——各一段，
-  說明跟本文延伸方向（動態 vs. 靜態關係圖）的差異
-- 從 `文獻_論文參考/related-literature-shortlist.md` 挑 2–4 篇（供應鏈關聯、跨市場資訊傳導）
-  當作「為什麼關聯會隨時間變化」這個假設的外部支持
+- Relation-based stock prediction beyond RSR: HGTAN (hypergraph) and GCNET (graph convolution). Explain how these differ from this project's extension (dynamic vs. static relation graphs).
+- Select two to four papers from `文獻_論文參考/related-literature-shortlist.md` (supply-chain relations and cross-market information transmission) as external support for the hypothesis that relations change over time.
 
 ## 3. Data
 
-`[R2]` 來源：`報告/R2_資料與EDA/eda.ipynb`，A1/A2/A3/B1 的發現直接改寫成敘述文字：
+[R2] Source: `報告/R2_資料與EDA/eda.ipynb`. Rewrite the A1/A2/A3/B1 findings directly as prose:
 
-- 3.1 資料來源：NASDAQ 1,026 檔、`data/2013-01-01/`，1,246 個交易日（≈5 年，不是 README 說的 30 年）
-- 3.2 關係圖：industry relation，156 檔（15%）為 ETF/基金、非個股，已排除
-- 3.3 資料清理：`-1234` 缺值代碼、ETF 排除後的樣本數
+- 3.1 Data source: 1,026 NASDAQ stocks in `data/2013-01-01/`, with 1,246 trading days (about five years, not the 30 years stated in the README).
+- 3.2 Relation graph: industry relations; 156 tickers (15%) are ETFs/funds, not individual stocks, and have been excluded.
+- 3.3 Data cleaning: `-1234` missing-value code and sample size after excluding ETFs.
 
 ## 4. Methods
 
-`[R3]` 三個模型設定，來源：`報告/R3_模型與實驗設計/PROGRESS.md`：
+[R3] Three model configurations, sourced from `報告/R3_模型與實驗設計/PROGRESS.md`:
 
-- 4.1 Baseline：Rank_LSTM（無關係圖）
-- 4.2 RSR：固定 industry 關係圖 + Temporal Graph Convolution（複製目標）
-- 4.3 本文延伸：動態關聯——滾動窗口相關係數，逐窗口重估關係圖
-  （`preprocess/dynamic_relation.py`，已驗證機制：邊密度隨窗口從 4.6% 變動到 33.8%）
+- 4.1 Baseline: Rank_LSTM (no relation graph).
+- 4.2 RSR: static industry relation graph + Temporal Graph Convolution (replication target).
+- 4.3 This project's extension: dynamic relations, re-estimating the relation graph in each rolling window using rolling correlations (`preprocess/dynamic_relation.py`; mechanism verified, with edge density ranging from 4.6% to 33.8% across windows).
 
 ## 5. Experiments and Results
 
-- 5.1 評估指標：MSE、MRR-Top1、模擬報酬（`training/evaluator.py`）
-- 5.2 Baseline 結果 `[R3 已有真數字]`：Test MSE 0.000377、mrrt 0.049、btl 1.02（NASDAQ 全量，50 epochs）
-- 5.3 RSR 結果：**待補**（embedding 已匯出，`data/pretrain/NASDAQ_rank_lstm_seq-4_unit-32_0.npy`，
-  差最後一次全量訓練）
-- 5.4 動態關聯結果：**待補**（腳本可動，還沒接進 `relation_rank_lstm.py`、還沒全量跑）
-- 5.5 Ablation 比較表：baseline / RSR / 動態，三欄同一組指標
+- 5.1 Metrics: MSE, MRR-Top1, and simulated return (`training/evaluator.py`).
+- 5.2 Baseline results [real R3 numbers available]: Test MSE 0.000377, mrrt 0.049, btl 1.02 (full NASDAQ run, 50 epochs).
+- 5.3 RSR results: **pending** (embedding exported to `data/pretrain/NASDAQ_rank_lstm_seq-4_unit-32_0.npy`; one full training run remains).
+- 5.4 Dynamic-relation results: **pending** (script runs but has not been integrated into `relation_rank_lstm.py` or run on the full dataset).
+- 5.5 Ablation table: baseline / RSR / dynamic, with the same three metrics.
 
 ## 6. Discussion
 
-`[R4]` 來源：`報告/R4_實證分析與結論/PLAN.md` 的三種情境（動態明顯更好 / 沒差異 / 更差），
-等 5.4 數字出來後選一種改寫：
+[R4] Source: the three scenarios in `報告/R4_實證分析與結論/PLAN.md` (dynamic relations clearly better / no difference / worse). Choose and rewrite one after the 5.4 results are available:
 
-- 6.1 複製是否成功：跟原論文方向是否一致
-- 6.2 動態關聯的解讀：不管結果好壞都要講原因
-- 6.3 與原論文的差異：資料期間、市場範圍
-- 6.4 限制
+- 6.1 Was the replication successful? Did it match the original paper's direction?
+- 6.2 Interpret the dynamic-relation results and explain why, whatever the outcome.
+- 6.3 Differences from the original paper: data period and market coverage.
+- 6.4 Limitations.
 
 ## 7. Conclusion and Future Work
 
-一段總結 + 呼應 syllabus「Potentials of your projects」：若動態關聯有效，下一步可以往
-thesis/journal publication 延伸。
+Summarize the findings and address the syllabus prompt “Potential of your project”: if dynamic relations help, a next step could be a thesis or journal publication.
 
 ## References
 
-Chicago style。`文獻_論文參考/` 底下的論文全部要列進來，主要複製論文用 Chicago 格式標明。
+Use Chicago style. Include all papers in `文獻_論文參考/` and cite the primary replicated paper in Chicago style.
 
 ---
 
-## 現在能寫的 vs. 還要等的
+## What Can Be Written Now vs. What Must Wait
 
-| 章節 | 現在能不能寫 |
+| Section | Ready to write? |
 |---|---|
-| 1 Introduction | ✅ 能寫，素材齊了 |
-| 2 Related Work | ✅ 能寫，素材齊了 |
-| 3 Data | ✅ 能寫，`eda.ipynb` 內容直接改寫 |
-| 4 Methods | ✅ 能寫，三個模型設定都定案了 |
-| 5.2 Baseline 結果 | ✅ 能寫，真數字已經有 |
-| 5.3 RSR 結果 | ⏳ 等全量訓練跑完 |
-| 5.4 動態關聯結果 | ⏳ 等 `relation_rank_lstm.py` 接上動態關係圖 + 全量跑完 |
-| 6 Discussion / 7 Conclusion | ⏳ 等 5.3、5.4 都有數字才能寫 |
-| Abstract | ⏳ 全部寫完最後才寫 |
+| 1 Introduction | ✅ Yes; source material is ready |
+| 2 Related Work | ✅ Yes; source material is ready |
+| 3 Data | ✅ Yes; adapt the contents of `eda.ipynb` |
+| 4 Methods | ✅ Yes; all three model configurations are decided |
+| 5.2 Baseline results | ✅ Yes; real results are available |
+| 5.3 RSR results | ⏳ Wait for the full training run |
+| 5.4 Dynamic-relation results | ⏳ Wait for dynamic graph integration into `relation_rank_lstm.py` and a full run |
+| 6 Discussion / 7 Conclusion | ⏳ Wait for both 5.3 and 5.4 results |
+| Abstract | ⏳ Write last, after the rest is complete |
