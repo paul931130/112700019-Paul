@@ -78,9 +78,22 @@ Python，Jupyter Notebook（README 要求交 Jupyter Notebook，原始訓練腳�
 
 ## Manuscript / Slides
 
-- Overleaf：（待補連結，分享至 venteng@gmail.com）
-- Canva Slides：（待補連結，分享至 venteng@gmail.com）
+- Overleaf：https://www.overleaf.com/read/fjkrqhnbqwgc#e5d02b
+  （這是唯讀分享連結；如果還沒把 `venteng@gmail.com` 加進協作者名單，記得另外處理，
+  唯讀連結不等於分享給老師）
+- Canva Slides：https://canva.link/psyac0w98zuyn5l
+  （先用這份交件，等老師/助教開放 `20260920-template-ML&FinTech` 模板
+  （https://www.canva.com/design/DAHROU_9H8o/...）的編輯權限後，再換成模板複本。
+  記得分享至 venteng@gmail.com）
+  - 備用：https://canva.link/a6bv496rvwdfbl5（AI 新建的純白底極簡版，R1 內容已填完整，
+    R2/R3/R4 是佔位內容，模仿模板排版邏輯但沒有 NYCU 校徽）
 
 ## GitHub
 
-（待補：學生自己的 GitHub 頁面連結）
+- 學號：112700019・暱稱：Paul
+- 個人 repo（待建立、待 push）：`202609-ML-FinTech-112700019-Paul`
+- 本機已 `git init`，`homework/` 與 `專案/` 兩個資料夾已納入版控並完成第一次 commit
+  （`Temporal_Relational_Stock_Ranking/`、`共用參考資料`、`專案/程式碼/GCNET-Code`、
+  `專案/程式碼/HGTAN` 是外部 clone，已在 `.gitignore` 排除，不算進個人 repo）
+- 待補：在 GitHub 建立 `202609-ML-FinTech-112700019-Paul` repo 後，把本機 commit push 上去，
+  再把這裡的連結換成實際網址

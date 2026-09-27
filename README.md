@@ -4,8 +4,9 @@ ML & FinTech · 115-1 · Prof. Huei-Wen Teng
 Department of Information Management and Finance, National Yang Ming Chiao Tung University
 
 - **GitHub**: https://github.com/paul931130/112700019-Paul
-- **Overleaf manuscript**: _TODO — paste the Overleaf share link once uploaded (see `專案/manuscript/` in the course working folder for `main.tex` / `references.bib`)_
-- **Canva slides**: _TODO — paste the Canva share link once created_
+- **Overleaf manuscript**: https://www.overleaf.com/read/fjkrqhnbqwgc#e5d02b
+  （唯讀連結；記得確認 `venteng@gmail.com` 有被加進協作者）
+- **Canva slides**: https://canva.link/psyac0w98zuyn5l
 
 ## Replicating a paper
 
@@ -15,25 +16,26 @@ Relational Ranking for Stock Prediction." *ACM Transactions on Information Syste
 
 Official code: https://github.com/fulifeng/Temporal_Relational_Stock_Ranking
 
-Extension (this project): a dynamic, rolling-window relation graph in place of RSR's static
-industry/Wikidata graph — see the manuscript's Introduction and Methods sections for the research
-questions and architecture.
+This project is a straight replication — no architectural extension. It compares the official
+baseline (Rank_LSTM, no relation graph) against RSR (static industry relation graph); see
+`專案/README.md` and `專案/manuscript/main.tex` for the full writeup, results, and discussion.
 
 ## Code
 
 Python, Jupyter Notebook:
 
-- [`IC-0914.ipynb`](IC-0914.ipynb) — in-class EDA exercise applied to this project's stock/relation
-  data (RSR replication universe), Colab-compatible (auto-clones the official RSR repo if the
-  local data isn't found).
+- [`in-class-exercise/IC-0914.ipynb`](in-class-exercise/IC-0914.ipynb) — in-class EDA exercise
+  applied to this project's stock/relation data (RSR replication universe), Colab-compatible
+  (auto-clones the official RSR repo if the local data isn't found).
 - [`homework/HW-0914-Q8.ipynb`](homework/HW-0914-Q8.ipynb) — ISLP §2.4 Q8, `College` dataset EDA.
 - [`homework/HW-0914.md`](homework/HW-0914.md) / [`homework/HW-0914-Q3a.jpg`](homework/HW-0914-Q3a.jpg) — ISLP §2.4 Q2, Q3, Q7.
+- [`homework/HW-0921.md`](homework/HW-0921.md) — hierarchical clustering and K-means.
 
-The model training code (baseline Rank\_LSTM, RSR, and the dynamic-relation extension) and the
-manuscript source are maintained in the course working folder outside this repo pending a
-decision on final repo layout: `Temporal_Relational_Stock_Ranking/training/` and
-`專案/manuscript/`. _TODO: bring these into this repo's `Project/` folder to match the course's
-required `HW/` + `Project/` structure._
+The Project folder (`專案/`) is now part of this repo: motivation (R1), EDA notebook (R2), model
+training results and logs (R3), analysis draft (R4), and the manuscript source
+(`專案/manuscript/main.tex`). The model training code itself (baseline Rank_LSTM, RSR) stays in
+the official repo clone outside this one: `Temporal_Relational_Stock_Ranking/training/` — too
+large to commit here, referenced by path in `專案/README.md`.
 
 ## Data ("rawdata")
 

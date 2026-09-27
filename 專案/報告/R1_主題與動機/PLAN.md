@@ -29,5 +29,12 @@ manuscript 對應章節：Introduction / Motivation（真正評分依據是 Proj
 
 ## 待辦
 
-- [ ] 把論文 PDF 放進 `文獻_論文參考/`
+- [x] 投影片：https://canva.link/psyac0w98zuyn5l（先用這份交件；備用連結、待老師開模板編輯
+      權限後的切換計畫見 `../../README.md`）
+- [x] 論文 PDF：`../../文獻_論文參考/feng2019-temporal-relational-ranking.pdf`
+      （arXiv 1809.09441，作者自存檔版本，跟 ACM 正式版同一篇）
+- [x] Overleaf：https://www.overleaf.com/read/fjkrqhnbqwgc#e5d02b（唯讀連結，
+      記得確認 venteng@gmail.com 有被加進協作者，唯讀連結不算分享）
 - [ ] 決定是否組隊 / 獨立完成，補上這段敘述
+- [ ] GitHub repo push（本機已 commit，見 `../../PLAN-R1-R4.md`）
+- [ ] 有空的話：跟老師/助教要模板的編輯權限，把簡報換成模板複本（非必要，內容已經到位）
