@@ -114,7 +114,7 @@ breadth of the modeling sample.
 
 \subsection{Data quality}
 
-Exploratory analysis (full notebook: \texttt{報告/R2\_資料與EDA/eda.ipynb}) surfaced two further
+Exploratory analysis (full notebook: \texttt{reports/R2\_data\_and\_eda/eda.ipynb}) surfaced two further
 gaps between the data and its documentation, beyond the sample-size point above:
 
 \begin{enumerate}
@@ -138,7 +138,7 @@ Both issues are corrected identically across every model reported in Section~\re
 the $-1234$ sentinel is treated as missing (not as a value) wherever it appears, and results are
 reported with the 156 ETF/fund tickers still present in the universe unless noted otherwise, since
 removing them would change the size of the relation graph and is left as a robustness check in
-\texttt{報告/R3\_模型與實驗設計/PROGRESS.md}.
+\texttt{reports/R3\_model\_and\_experiments/PROGRESS.md}.
 
 \section{Methods}
 \label{sec:methods}
@@ -242,7 +242,7 @@ original result, none of which we can rule in or out with a single training run:
 \end{enumerate}
 
 We do not have evidence to prefer one of these explanations over the others; distinguishing them
-is exactly what the robustness checks in \texttt{報告/R3\_模型與實驗設計/PROGRESS.md} (a second
+is exactly what the robustness checks in \texttt{reports/R3\_model\_and\_experiments/PROGRESS.md} (a second
 random seed; a brief hyperparameter sweep) are for, and that work is not yet done as of this
 draft.
 
@@ -268,7 +268,7 @@ information improves both prediction error and ranking performance in this setti
 depends on which of the two ranking-adjacent metrics (mrrt vs.\ btl) one weights more.
 
 Following the course's framing of ``potentials of your projects,'' the most direct next steps are
-the remaining robustness checks scoped in \texttt{報告/R3\_模型與實驗設計/PROGRESS.md} --- a second
+the remaining robustness checks scoped in \texttt{reports/R3\_model\_and\_experiments/PROGRESS.md} --- a second
 random seed and a brief hyperparameter sweep closer to the original paper's published
 configuration --- to establish whether the mrrt/btl split and the absence of an MSE improvement
 are stable findings or artifacts of a single run. Extending the comparison to the Wikidata relation

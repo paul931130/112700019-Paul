@@ -13,7 +13,7 @@ One paragraph (150–250 words): question → method → main findings. Write th
 
 ## 1. Introduction
 
-Source: `報告/R1_主題與動機/PLAN.md`. A draft exists and needs polishing into formal prose.
+Source: `reports/R1_topic_and_motivation/PLAN.md`. A draft exists and needs polishing into formal prose.
 
 - 1.1 Motivation: Why should stocks not be modeled as independent entities?
 - 1.2 Replicated paper: Feng et al. (2019), RSR — summarize the core method in one paragraph.
@@ -25,11 +25,11 @@ Source: `報告/R1_主題與動機/PLAN.md`. A draft exists and needs polishing 
 A new section not directly covered by R1 PLAN.md, but source material is available:
 
 - Relation-based stock prediction beyond RSR: HGTAN (hypergraph) and GCNET (graph convolution). Explain how these differ from this project's extension (dynamic vs. static relation graphs).
-- Select two to four papers from `文獻_論文參考/related-literature-shortlist.md` (supply-chain relations and cross-market information transmission) as external support for the hypothesis that relations change over time.
+- Select two to four papers from `references/related-literature-shortlist.md` (supply-chain relations and cross-market information transmission) as external support for the hypothesis that relations change over time.
 
 ## 3. Data
 
-[R2] Source: `報告/R2_資料與EDA/eda.ipynb`. Rewrite the A1/A2/A3/B1 findings directly as prose:
+[R2] Source: `reports/R2_data_and_eda/eda.ipynb`. Rewrite the A1/A2/A3/B1 findings directly as prose:
 
 - 3.1 Data source: 1,026 NASDAQ stocks in `data/2013-01-01/`, with 1,246 trading days (about five years, not the 30 years stated in the README).
 - 3.2 Relation graph: industry relations; 156 tickers (15%) are ETFs/funds, not individual stocks, and have been excluded.
@@ -37,7 +37,7 @@ A new section not directly covered by R1 PLAN.md, but source material is availab
 
 ## 4. Methods
 
-[R3] Three model configurations, sourced from `報告/R3_模型與實驗設計/PROGRESS.md`:
+[R3] Three model configurations, sourced from `reports/R3_model_and_experiments/PROGRESS.md`:
 
 - 4.1 Baseline: Rank_LSTM (no relation graph).
 - 4.2 RSR: static industry relation graph + Temporal Graph Convolution (replication target).
@@ -53,7 +53,7 @@ A new section not directly covered by R1 PLAN.md, but source material is availab
 
 ## 6. Discussion
 
-[R4] Source: the three scenarios in `報告/R4_實證分析與結論/PLAN.md` (dynamic relations clearly better / no difference / worse). Choose and rewrite one after the 5.4 results are available:
+[R4] Source: the three scenarios in `reports/R4_results_and_conclusion/PLAN.md` (dynamic relations clearly better / no difference / worse). Choose and rewrite one after the 5.4 results are available:
 
 - 6.1 Was the replication successful? Did it match the original paper's direction?
 - 6.2 Interpret the dynamic-relation results and explain why, whatever the outcome.
@@ -66,7 +66,7 @@ Summarize the findings and address the syllabus prompt “Potential of your proj
 
 ## References
 
-Use Chicago style. Include all papers in `文獻_論文參考/` and cite the primary replicated paper in Chicago style.
+Use Chicago style. Include all papers in `references/` and cite the primary replicated paper in Chicago style.
 
 ---
 

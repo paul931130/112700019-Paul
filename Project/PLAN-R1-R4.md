@@ -13,31 +13,31 @@ Today is 2026-09-27. Each of the four milestones consists of the corresponding m
 
 ## R1 (10/05): Only the Links Remain
 
-- [x] Content: `報告/R1_主題與動機/R1.md`
+- [x] Content: `reports/R1_topic_and_motivation/R1.md`
 - [x] Manuscript `1 synchronized
-- [x] Slide outline: `報告/R1_主題與動機/R1_slides_outline.md`
-- [x] Local Git repository created (`homework/` and `專案/` committed)
+- [x] Slide outline: `reports/R1_topic_and_motivation/R1_slides_outline.md`
+- [x] Local Git repository created (`HW/` and `Project/` committed)
 - [ ] Your action: create the GitHub repository and push (`202609-ML-FinTech-112700019-Paul`)
 - [ ] Your action: create the Overleaf project and share it with `venteng@gmail.com`
 - [ ] Your action: format the Canva slides and share them with `venteng@gmail.com`
-- [ ] Add the three links to `專案/README.md`
-- [ ] Add the full paper PDF to `文獻_論文參考/` (currently empty)
+- [ ] Add the three links to `README.md`
+- [ ] Add the full paper PDF to `references/` (currently empty)
 
 **This week's only tasks are the three actions above. The content does not need more revisions.**
 
 ## R2 (10/19): Turn the EDA into Written Findings
 
-Current status: `報告/R2_資料與EDA/eda.ipynb` already contains analysis (findings about the missing-value sentinel, ETFs mixed into the graph, etc., already cited in manuscript section 3), but the R2 folder has no written draft like R1.md or R4.md—only a PLAN outline.
+Current status: `reports/R2_data_and_eda/eda.ipynb` already contains analysis (findings about the missing-value sentinel, ETFs mixed into the graph, etc., already cited in manuscript section 3), but the R2 folder has no written draft like R1.md or R4.md—only a PLAN outline.
 
-- [ ] Write `報告/R2_資料與EDA/R2.md`: summarize the findings from `eda.ipynb` (data sources, scale, and two data-quality issues) for manuscript section 3 Data. The manuscript section itself is already written; this is mainly a standalone version for the R2 presentation.
+- [ ] Write `reports/R2_data_and_eda/R2.md`: summarize the findings from `eda.ipynb` (data sources, scale, and two data-quality issues) for manuscript section 3 Data. The manuscript section itself is already written; this is mainly a standalone version for the R2 presentation.
 - [ ] Prepare a slide outline in the same format as `R1_slides_outline.md`.
 - [ ] Check whether `eda.ipynb` needs additional figures (the manuscript currently describes the missing-value and ETF issues in text without figures).
 
 ## R3 (11/09): Content Is Ready; Robustness Checks Remain
 
-Current status: baseline vs. RSR training results are recorded in `PROGRESS.md`, and manuscript sections 4–5 have been written from those results. The `報告/R3_模型與實驗設計/` folder still lacks a standalone written draft like R1.md.
+Current status: baseline vs. RSR training results are recorded in `PROGRESS.md`, and manuscript sections 4–5 have been written from those results. The `reports/R3_model_and_experiments/` folder still lacks a standalone written draft like R1.md.
 
-- [ ] Write `報告/R3_模型與實驗設計/R3.md`: combine the model setup in `PLAN.md` and results in `PROGRESS.md` into a draft corresponding to manuscript sections 4 Methods + 5 Results.
+- [ ] Write `reports/R3_model_and_experiments/R3.md`: combine the model setup in `PLAN.md` and results in `PROGRESS.md` into a draft corresponding to manuscript sections 4 Methods + 5 Results.
 - [ ] Prepare a slide outline.
 - [ ] **Robustness checks (to evaluate the three candidate explanations in R4.md `2):**
   - [ ] Rerun baseline and RSR for 50 epochs with a different random seed to check whether the split in mrrt/btl is a one-off result.
@@ -46,7 +46,7 @@ Current status: baseline vs. RSR training results are recorded in `PROGRESS.md`,
 
 ## R4 (11/30): Draft Complete; Revisit After R3 Checks
 
-- [x] `報告/R4_實證分析與結論/R4.md` completed
+- [x] `reports/R4_results_and_conclusion/R4.md` completed
 - [x] Manuscript ``6–7` synchronized
 - [ ] After the R3 robustness checks, revisit the three candidate explanations in R4.md `2. If the mrrt/btl split disappears or reverses with another seed, revise ``6–7` accordingly.
 - [ ] Prepare a slide outline.

@@ -31,6 +31,6 @@ Change the bottom-left label from `Volatility` to **RSR** or **Relational Stock 
 
 ## Pages for R2/R3/R4 (leave these for later milestones)
 
-- Page 3 (R2 Data): return after completing `報告/R2_資料與EDA/` and R2.md.
-- Page 4 (R3 Methods/Results): use the model comparison table in `報告/R3_模型與實驗設計/PROGRESS.md`.
+- Page 3 (R2 Data): return after completing `../R2_data_and_eda/` and R2.md.
+- Page 4 (R3 Methods/Results): use the model comparison table in `../R3_model_and_experiments/PROGRESS.md`.
 - Page 5 (R4 Conclusion): R4.md is complete; condense it into three bullets at that time.

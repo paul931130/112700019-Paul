@@ -14,18 +14,18 @@ Feng, Fuli, Xiangnan He, Xiang Wang, Cheng Luo, Yiqun Liu, and Tat-Seng Chua. �
 
 Official code: https://github.com/fulifeng/Temporal_Relational_Stock_Ranking
 
-This project is a direct replication, with no architectural extensions. It compares the official baseline (Rank_LSTM, without a relation graph) with RSR (a static industry-relation graph). See `專案/README.md` and `專案/manuscript/main.tex` for the full write-up, results, and discussion.
+This project is a direct replication, with no architectural extensions. It compares the official baseline (Rank_LSTM, without a relation graph) with RSR (a static industry-relation graph). See `Project/README.md` and `Project/manuscript/main.tex` for the full write-up, results, and discussion.
 
 ## Code
 
 Python and Jupyter Notebooks:
 
 - [`in-class-exercise/IC-0914.ipynb`](in-class-exercise/IC-0914.ipynb) — In-class EDA exercise using this project's stock and relation data (the RSR replication universe). Colab-compatible; it automatically clones the official RSR repository if local data is unavailable.
-- [`homework/HW-0914-Q8.ipynb`](homework/HW-0914-Q8.ipynb) — ISLP `2.4, Q8: EDA of the `College` dataset.
-- [`homework/HW-0914.md`](homework/HW-0914.md) / [`homework/HW-0914-Q3a.jpg`](homework/HW-0914-Q3a.jpg) — ISLP `2.4, Q2, Q3, and Q7.
-- [`homework/HW-0921.md`](homework/HW-0921.md) — Hierarchical clustering and K-means.
+- [`HW/HW-0914-Q8.ipynb`](HW/HW-0914-Q8.ipynb) — ISLP `2.4, Q8: EDA of the `College` dataset.
+- [`HW/HW-0914.md`](HW/HW-0914.md) / [`HW/HW-0914-Q3a.jpg`](HW/HW-0914-Q3a.jpg) — ISLP `2.4, Q2, Q3, and Q7.
+- [`HW/HW-0921.md`](HW/HW-0921.md) — Hierarchical clustering and K-means.
 
-The Project folder (`專案/`) is part of this repository. It contains the motivation (R1), EDA notebook (R2), model training results and logs (R3), analysis draft (R4), and manuscript source (`專案/manuscript/main.tex`). The model training code (baseline Rank_LSTM and RSR) remains in an external clone of the official repository: `Temporal_Relational_Stock_Ranking/training/`. It is too large to commit here and is referenced by path in `專案/README.md`.
+The Project folder (`Project/`) is part of this repository. It contains the motivation (R1), EDA notebook (R2), model training results and logs (R3), analysis draft (R4), and manuscript source (`Project/manuscript/main.tex`). The model training code (baseline Rank_LSTM and RSR) remains in an external clone of the official repository: `Temporal_Relational_Stock_Ranking/training/`. It is too large to commit here and is referenced by path in `Project/README.md`.
 
 ## Data
 

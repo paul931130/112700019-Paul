@@ -18,5 +18,5 @@ Corresponding manuscript section: Results / Conclusion. The 40% Project grade is
 ## To Do
 
 - [x] Scope is set as a straight replication with no dynamic-relation extension. ``6–7` of `../../manuscript/main.tex` have been rewritten to discuss only the baseline-vs-RSR replication and comparison with the original paper.
-- [ ] Decide whether to keep the dynamic-relation exploration notes from the latter part of `../R3_模型與實驗設計/PROGRESS.md` as an appendix or exclude them from the manuscript.
+- [ ] Decide whether to keep the dynamic-relation exploration notes from the latter part of `../R3_model_and_experiments/PROGRESS.md` as an appendix or exclude them from the manuscript.
 - [ ] After the R3 robustness checks (new seed and hyperparameter search), revisit the three candidate explanations in R4.md `2.

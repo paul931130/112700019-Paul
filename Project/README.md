@@ -10,7 +10,7 @@ Feng, Fuli, Xiangnan He, Xiang Wang, Cheng Luo, Yiqun Liu, and Tat-Seng Chua. "T
 - **Always set `TF_USE_LEGACY_KERAS=1` before running any training command** (e.g.
   `TF_USE_LEGACY_KERAS=1 python rank_lstm.py -p ../data/2013-01-01 -m NASDAQ -l 4 -u 32`),
   otherwise it fails at the `BasicLSTMCell` line with `AttributeError: BasicLSTMCell is not available with Keras 3`.
-  Details in `報告/R3_模型與實驗設計/PROGRESS.md`.
+  Details in `reports/R3_model_and_experiments/PROGRESS.md`.
 
 ## Paper Summary and Method
 
@@ -18,7 +18,7 @@ Proposes the Relational Stock Ranking (RSR) model with Temporal Graph Convolutio
 
 ## What Is Actually Graded (per syllabus + official GitHub)
 
-The `報告/R1~R4` folders originally referenced a "corresponding grading rubric item," but that rubric could not be traced to any source — neither syllabus (`slides/20260907-Ch00-Syllabus.pdf`, `slides/20260914-Ch00-Syllabus.pdf`) nor the official GitHub (`202609-ML-FinTech/00-course-info`, verified directly via the GitHub API on 2026-09-14) contains such a table, nor any statement about "R1/R2/R3/R4 each being graded separately." Below is the verified, actual basis:
+The `reports/R1~R4` folders originally referenced a "corresponding grading rubric item," but that rubric could not be traced to any source — neither syllabus (`slides/20260907-Ch00-Syllabus.pdf`, `slides/20260914-Ch00-Syllabus.pdf`) nor the official GitHub (`202609-ML-FinTech/00-course-info`, verified directly via the GitHub API on 2026-09-14) contains such a table, nor any statement about "R1/R2/R3/R4 each being graded separately." Below is the verified, actual basis:
 
 **Grading policy** (`20260907-Ch00-Syllabus.pdf` p.6):
 
@@ -38,21 +38,21 @@ The `報告/R1~R4` folders originally referenced a "corresponding grading rubric
 
 **The Project's README.md must include** (p.10 "Your GitHub Repo"): a link to your GitHub page, a Chicago-style citation of the replicated paper, a link to the Overleaf manuscript, a link to the Canva slides, "Code" (Jupyter Notebook), and "Data" (dataset or link).
 
-**What is actually graded is the Project's 40% LaTeX manuscript**, not this folder itself. The content under `報告/R1~R4` (motivation, EDA, model experiments, conclusion) is still real material the manuscript needs — the only thing dropped is the mistaken framing that each folder is "worth X% of a grading rubric." The four folders are now just draft sections written before assembling the manuscript:
+**What is actually graded is the Project's 40% LaTeX manuscript**, not this folder itself. The content under `reports/R1~R4` (motivation, EDA, model experiments, conclusion) is still real material the manuscript needs — the only thing dropped is the mistaken framing that each folder is "worth X% of a grading rubric." The four folders are now just draft sections written before assembling the manuscript:
 
 | Folder | Corresponding manuscript section | Content |
 |---|---|---|
-| `報告/R1_主題與動機` | Introduction / Motivation | Paper introduction, why this paper, RQ1 |
-| `報告/R2_資料與EDA` | Data | Raw data description, EDA notebook (`eda.ipynb`) |
-| `報告/R3_模型與實驗設計` | Methods / Experiments | Baseline (Rank_LSTM) vs. RSR, with ablation (relation graph present/absent, industry vs. wiki) |
-| `報告/R4_實證分析與結論` | Results / Conclusion | Interpretation of results, comparison with the original paper, discussion |
-| `文獻_論文參考` | References | Full text of the replicated paper, related-literature notes |
+| `reports/R1_topic_and_motivation` | Introduction / Motivation | Paper introduction, why this paper, RQ1 |
+| `reports/R2_data_and_eda` | Data | Raw data description, EDA notebook (`eda.ipynb`) |
+| `reports/R3_model_and_experiments` | Methods / Experiments | Baseline (Rank_LSTM) vs. RSR, with ablation (relation graph present/absent, industry vs. wiki) |
+| `reports/R4_results_and_conclusion` | Results / Conclusion | Interpretation of results, comparison with the original paper, discussion |
+| `references` | References | Full text of the replicated paper, related-literature notes |
 | `程式碼` | — | Points to `../Temporal_Relational_Stock_Ranking`, or holds a cleaned-up Jupyter Notebook version |
 | `資料` | — | Dataset or dataset-link description |
 
 ## Scope (decided): a straight replication, no extension
 
-A "dynamic cross-stock relation" extension was considered at one point (see the exploration notes in `報告/R3_模型與實驗設計/PROGRESS.md`), but has been **dropped** — this project is a straight replication of Feng et al. (2019)'s RSR, with no new method added. The dynamic-relation code (`preprocess/dynamic_relation.py`, `training/dynamic_relation_rank_lstm.py`) and its log files are left in place as a record of that exploration, but do not appear in the final manuscript's conclusions.
+A "dynamic cross-stock relation" extension was considered at one point (see the exploration notes in `reports/R3_model_and_experiments/PROGRESS.md`), but has been **dropped** — this project is a straight replication of Feng et al. (2019)'s RSR, with no new method added. The dynamic-relation code (`preprocess/dynamic_relation.py`, `training/dynamic_relation_rank_lstm.py`) and its log files are left in place as a record of that exploration, but do not appear in the final manuscript's conclusions.
 
 ## Data
 
@@ -85,6 +85,6 @@ Python, Jupyter Notebook (the README requires a Jupyter Notebook submission; the
 
 - Student ID: 112700019 · Nickname: Paul
 - Personal repo: https://github.com/paul931130/112700019-Paul
-- Pushed: `homework/` and `專案/` are tracked and pushed
-  (`Temporal_Relational_Stock_Ranking/`, `共用參考資料`, `專案/程式碼/GCNET-Code`,
-  `專案/程式碼/HGTAN` are external clones, excluded via `.gitignore`, not part of the personal repo)
+- Pushed: `HW/` and `Project/` are tracked and pushed
+  (`Temporal_Relational_Stock_Ranking/`, `共用參考資料`, `Project/code/GCNET-Code`,
+  `Project/code/HGTAN` are external clones, excluded via `.gitignore`, not part of the personal repo)

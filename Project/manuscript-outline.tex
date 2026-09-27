@@ -16,7 +16,7 @@ This outline maps the R1--R4 draft folders to manuscript sections. Markers such 
 \section*{Abstract}
 One paragraph (150--250 words): question, method, and main findings. Write this last, after the R3/R4 results are final.
 \section{Introduction}
-Source: \path{報告/R1_主題與動機/PLAN.md}. A draft exists and needs polishing into formal prose.
+Source: \path{reports/R1_topic_and_motivation/PLAN.md}. A draft exists and needs polishing into formal prose.
 \begin{itemize}[leftmargin=*]
 \item Motivation: why should stocks not be modeled as independent entities?
 \item Feng et al. (2019), RSR: summarize the core method.
@@ -26,14 +26,14 @@ Source: \path{報告/R1_主題與動機/PLAN.md}. A draft exists and needs polis
 \section{Related Work}
 Discuss HGTAN (hypergraph) and GCNET (graph convolution), and select two to four papers on supply-chain relations or cross-market information transmission.
 \section{Data}
-\textbf{[R2]} Source: \path{報告/R2_資料與EDA/eda.ipynb}.
+\textbf{[R2]} Source: \path{reports/R2_data_and_eda/eda.ipynb}.
 \begin{itemize}[leftmargin=*]
 \item Data source: 1,026 NASDAQ stocks in \path{data/2013-01-01/}, with 1,246 trading days.
 \item Industry graph: 156 tickers (15\%) are ETFs/funds rather than individual stocks.
 \item Describe the \path{-1234} missing-value code and sample size after ETF exclusion.
 \end{itemize}
 \section{Methods}
-\textbf{[R3]} Source: \path{報告/R3_模型與實驗設計/PROGRESS.md}.
+\textbf{[R3]} Source: \path{reports/R3_model_and_experiments/PROGRESS.md}.
 \begin{itemize}[leftmargin=*]
 \item Rank\_LSTM baseline without a relation graph.
 \item RSR with a static industry graph and Temporal Graph Convolution.
@@ -44,7 +44,7 @@ Report MSE, MRR-Top1, and simulated returns. Compare baseline, RSR, and dynamic-
 \section{Discussion and Conclusion}
 \textbf{[R4]} Compare the results with the original paper, explain differences in data period and market coverage, and state limitations. Address the syllabus prompt, ``Potential of your projects.'' If the extension proves useful, a next step could be a thesis or journal publication.
 \section*{References}
-Use Chicago style and include the papers listed in \path{文獻_論文參考/}.
+Use Chicago style and include the papers listed in \path{references/}.
 \section*{Writing Status}
 Introduction, Related Work, Data, Methods, and baseline results have source material. RSR and dynamic-relations results require full training runs. Write the abstract last.
 \end{document}

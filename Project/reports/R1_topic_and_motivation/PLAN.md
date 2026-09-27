@@ -20,12 +20,12 @@ Corresponding manuscript section: Introduction / Motivation. The 40% Project gra
 
 - `../../README.md` (project summary and method)
 - `../../../Temporal_Relational_Stock_Ranking/README.md` (official summary)
-- Full paper: `../../文獻_論文參考/feng2019-temporal-relational-ranking.pdf`
+- Full paper: `../../references/feng2019-temporal-relational-ranking.pdf`
 
 ## To Do
 
 - [x] Slides: https://canva.link/psyac0w98zuyn5l (use this for now; the backup link and template-switch plan are in `../../README.md`)
-- [x] Paper PDF: `../../文獻_論文參考/feng2019-temporal-relational-ranking.pdf` (author-posted arXiv 1809.09441 version of the same paper as the ACM edition)
+- [x] Paper PDF: `../../references/feng2019-temporal-relational-ranking.pdf` (author-posted arXiv 1809.09441 version of the same paper as the ACM edition)
 - [x] Overleaf: https://www.overleaf.com/read/fjkrqhnbqwgc#e5d02b (read-only link; make sure `venteng@gmail.com` is added as a collaborator—the read-only link alone does not count as sharing)
 - [ ] Decide whether to work as a team or independently, and add a statement about it.
 - [ ] Push the GitHub repository (the local project is committed; see `../../PLAN-R1-R4.md`).
