@@ -1,47 +1,36 @@
-# R1 投影片內容（貼進 Canva 模板用）
+# R1 Slide Content (for the Canva Template)
 
-模板連結：https://www.canva.com/design/DAHROU_9H8o/1YNOqtDbEHpyRx1HwdCgMA/edit
-（`20260920-template-ML&FinTech`，共 6 頁：標題、R1、R2、R3、R4、結尾，整學期共用同一份）
+Template: https://www.canva.com/design/DAHROU_9H8o/1YNOqtDbEHpyRx1HwdCgMA/edit
+(`20260920-template-ML&FinTech`, six pages: title, R1, R2, R3, R4, closing; one shared deck for the semester.)
 
-這次 R1 milestone 只需要填**頁 1（標題）**跟**頁 2（R1）**，R2/R3/R4 那三頁等各自 milestone
-再回來填（頁 4、5 的範例已經有現成格式可以參考：3 條 bullet + 一張圖/公式）。
+For the R1 milestone, fill **page 1 (title)** and **page 2 (R1)** only. Return to pages 3–5 for the R2/R3/R4 milestones. Pages 4–5 already provide a format to follow: three bullets plus one figure or equation.
 
----
+## Page 1: Title
 
-## 頁 1：標題頁
+Replace the existing text with:
 
-原文字 → 換成：
+- Title: `Does Relational Information Improve Stock Return Ranking?`
+- Subtitle: `A Replication of Temporal Relational Ranking for Stock Prediction`
+- Author: `112700019 Paul`
 
-- `Replicating the paper: ?` → **Replicating the paper: Temporal Relational Ranking for Stock Prediction**
-- `NAME?` → **Paul (112700019)**
-- 下面兩行 affiliation 保留原樣（Department of Information Management and Finance 那兩行），
-  除非你的系所跟範本不同再改
+Keep the two affiliation lines (Department of Information Management and Finance) unchanged unless they differ from your department.
 
----
+## Page 2: R1 — Motivation and Why This Topic Interests You
 
-## 頁 2：R1 — Motivation and Why this topic interests you
+Replace the entire Realized Volatility example equation block with three bullets, matching the layout of pages 4–5:
 
-原本的公式（Realized Volatility 範例）整塊換掉，改成 3 條 bullet（跟頁 4、5 的排版風格一致）：
+1. Stock-return models often treat stocks as independent time series, overlooking industry and other relationships.
+2. Feng et al. (2019) propose RSR, which uses Temporal Graph Convolution to encode relations between stocks.
+3. This project replicates RSR and tests whether relational information improves next-day stock-ranking performance.
 
-- **Stocks are not independent** — industry, supply-chain, and shared-fund ties make returns
-  move together, but standard models (e.g. plain LSTM) treat each stock as its own isolated
-  time series
-- **Feng et al. (2019), Relational Stock Ranking (RSR)** — encodes an industry/Wikidata relation
-  graph into a Temporal Graph Convolution, ranking stocks by next-day return instead of
-  regressing the value directly
-- **Personal connection** — I'm separately building a multi-agent trading/investment system;
-  every agent currently analyzes one stock in isolation, with no agent modeling cross-stock
-  relations. RSR is a concrete way to turn that relation into a model input, which is why I'm
-  replicating it first before considering any downstream use
+Use the image on the page to illustrate connected stocks or a relation graph.
 
-頁尾左下角原本寫 `Volatility` 的標籤，改成：**RSR** 或 **Relational Stock Ranking**
+Change the bottom-left label from `Volatility` to **RSR** or **Relational Stock Ranking**.
 
-（右下角那個小圖示是裝飾用的箭頭/走勢圖，不用改，跟你的主題也搭）
+(The small arrow/trend icon at the lower right is decorative; it fits the topic and does not need to be changed.)
 
----
+## Pages for R2/R3/R4 (leave these for later milestones)
 
-## 之後 R2/R3/R4 要填的頁（先不用動，留給之後的 milestone）
-
-- 頁 3（R2 Data）：`報告/R2_資料與EDA/` 做完 R2.md 後再回來填
-- 頁 4（R3 Methods/Results）：`報告/R3_模型與實驗設計/PROGRESS.md` 的模型比較表
-- 頁 5（R4 結論）：`報告/R4_實證分析與結論/R4.md` 已經寫好，屆時直接濃縮成 3 條 bullet
+- Page 3 (R2 Data): return after completing `報告/R2_資料與EDA/` and R2.md.
+- Page 4 (R3 Methods/Results): use the model comparison table in `報告/R3_模型與實驗設計/PROGRESS.md`.
+- Page 5 (R4 Conclusion): R4.md is complete; condense it into three bullets at that time.

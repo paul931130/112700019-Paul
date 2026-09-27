@@ -1,133 +1,47 @@
-%% 編譯器：XeLaTeX（Overleaf: Menu -> Compiler -> XeLaTeX）
+%% Compiler: XeLaTeX (Overleaf: Menu -> Compiler -> XeLaTeX)
 \documentclass[12pt]{article}
 \usepackage[UTF8]{ctex}
 \usepackage[margin=1in]{geometry}
-\usepackage{booktabs,array,longtable,hyperref,enumitem}
-\usepackage{xurl}
+\usepackage{booktabs,array,longtable,hyperref,enumitem,xurl}
 \onehalfspacing
 \newcommand{\path}[1]{\texttt{\detokenize{#1}}}
-
-\title{機器學習與金融科技 --- 期末專題}
-\author{}
-\date{}
-
+\title{Machine Learning and Financial Technology --- Final Project}
+\author{112700019 Paul}
+\date{Fall 2026}
 \begin{document}
 \maketitle
-
-\section{複製論文 (Replicating a High-Quality Paper)}
-
+\section{Paper Replication}
 Feng, Fuli, Xiangnan He, Xiang Wang, Cheng Luo, Yiqun Liu, and Tat-Seng Chua.
-``Temporal Relational Ranking for Stock Prediction.''
-\textit{ACM Transactions on Information Systems} 37, no.~2 (2019): Article 27.
+``Temporal Relational Ranking for Stock Prediction.'' \textit{ACM Transactions on Information Systems} 37, no.~2 (2019): Article 27.
 \url{https://doi.org/10.1145/3309547}.
-
 \begin{itemize}[leftmargin=*]
-  \item 期刊等級：交大資工 A 級期刊清單（\path{共用參考資料} 或課程 GitHub
-        \path{journal-ranking/交大資工A級期刊_20200910Updated.xlsx} 第 11 筆）
-  \item 官方程式碼：\url{https://github.com/fulifeng/Temporal_Relational_Stock_Ranking}
-  \item 本機複製環境：\path{../Temporal_Relational_Stock_Ranking}（已 clone、已修補 TF1$\to$TF2 相容性、
-        venv 已建立、baseline RankLSTM 已實測跑通）
-  \item \textbf{跑訓練指令前務必加 \path{TF_USE_LEGACY_KERAS=1}}，例如
-        \path{TF_USE_LEGACY_KERAS=1 python rank_lstm.py -p ../data/2013-01-01 -m NASDAQ -l 4 -u 32}，
-        否則會在 \path{BasicLSTMCell} 那行出現
-        \path{AttributeError: BasicLSTMCell is not available with Keras 3}。
-        細節見 \path{報告/R3_模型與實驗設計/PROGRESS.md}。
+\item Journal tier: entry 11 in the NYCU CS A-tier journal list (\path{journal-ranking/交大資工A級期刊_20200910Updated.xlsx}).
+\item Official code: \url{https://github.com/fulifeng/Temporal_Relational_Stock_Ranking}.
+\item Set \path{TF_USE_LEGACY_KERAS=1} before training. Keras 3 does not provide \path{BasicLSTMCell}; see \path{報告/R3_模型與實驗設計/PROGRESS.md}.
 \end{itemize}
-
-\section{論文摘要與方法}
-
-提出 Relational Stock Ranking (RSR) 模型與 Temporal Graph Convolution，將股票間的關係
-（產業關係、Wikidata 關係）以「時間敏感」的方式編碼進排序任務，用於預測股票隔日報酬排名，
-取代過去把股票視為互相獨立個體的做法。
-
-\section{真正的評分依據（以 syllabus 與官方 GitHub 為準）}
-
-\path{報告/R1~R4} 底下原本寫「對應評分表項目」，該評分表查無出處：兩份 syllabus
-（\path{slides/20260907-Ch00-Syllabus.pdf}、\path{slides/20260914-Ch00-Syllabus.pdf}）與官方 GitHub
-（\path{202609-ML-FinTech/00-course-info}，2026-09-14 以 GitHub API 查證）皆無此表，
-也沒有任何「R1/R2/R3/R4 分節評分」的說法。以下為查證過的依據。
-
-\paragraph{Grading policy}（\path{20260907-Ch00-Syllabus.pdf} p.6）
-
-\begin{center}
-\begin{tabular}{lrp{8cm}}
-\toprule
-項目 & \% & 內容 \\
-\midrule
-Participation & 20 & 課堂練習、簡報（project/MFS/HW）、課堂總結，會 cold call \\
-\textbf{Project} & \textbf{40} & \textbf{根據 manuscript（LaTeX 撰寫）評分}，另需準備簡報用的 slides \\
-Exam & 40 & 課堂考，可帶一張 A4 雙面小抄 \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\paragraph{個人 repo 結構}（同上 p.5）
-
-\begin{verbatim}
-202609-ML-FinTech-<studentID>-<nickname>/
-|-- HW/
-`-- Project/   <- README.md, logs, snapshots, data and codes
-\end{verbatim}
-
-\paragraph{Project 的 README.md 要包含}（p.10 ``Your GitHub Repo''）：
-GitHub 頁面連結、Chicago style 引用複製的論文、Overleaf manuscript 連結、Canva slides 連結、
-``Code''（Jupyter Notebook）、``Data''（資料集或連結）。
-
-真正被評分的是 Project 40\% 那份 LaTeX manuscript，不是這個資料夾本身。
-\path{報告/R1~R4} 的內容（動機、EDA、模型實驗、結論）仍是 manuscript 需要的材料，
-只是拿掉「各自佔幾 \% 評分」的錯誤框架，現在當成寫 manuscript 前的草稿分節：
-
-\begin{center}
-\begin{longtable}{>{\raggedright\arraybackslash}p{4.6cm}>{\raggedright\arraybackslash}p{4cm}>{\raggedright\arraybackslash}p{6cm}}
-\toprule
-資料夾 & manuscript 對應章節 & 內容 \\
-\midrule
-\endhead
-\path{報告/R1_主題與動機} & Introduction / Motivation & 論文介紹、為何選這篇、RQ1/RQ2 \\
-\path{報告/R2_資料與EDA} & Data & 原始資料說明、EDA notebook（\path{eda.ipynb}） \\
-\path{報告/R3_模型與實驗設計} & Methods / Experiments & Baseline (Rank\_LSTM) vs.\ RSR，含 ablation（有無關係圖、動態延伸） \\
-\path{報告/R4_實證分析與結論} & Results / Conclusion & 結果解讀、與原論文比較、延伸討論 \\
-\path{文獻_論文參考} & References & 複製論文全文、相關文獻筆記 \\
-\path{程式碼} & --- & 指向 \path{../Temporal_Relational_Stock_Ranking}，或放整理過的 Jupyter Notebook 版本 \\
-\path{資料} & --- & 資料集或資料連結說明 \\
-\bottomrule
-\end{longtable}
-\end{center}
-
-\section{延伸方向（已確認）：動態跨股票關聯}
-
-RSR 論文的 industry / wiki 關係圖在訓練期間固定不變；HGTAN（\path{../HGTAN}）的群體 hypergraph
-歸屬（產業、基金持股）也不隨時間更新。確認要做的延伸：在 \path{報告/R3_模型與實驗設計} 的 ablation
-額外加入一組「動態關聯」設定，用滾動窗口相關係數（或其他隨時間重估的關係圖）取代固定關係圖，
-重跑 \path{relation_rank_lstm.py} 比較排名表現，驗證「關聯的變化本身」是否比「關聯的存在與否」更有預測力。
-
-對照課程 \path{20260914-Ch00-Syllabus.pdf} 「Potentials of your projects」投影片，
-這屬於 ``with modifications (new dataset or new methods)''，是可以再往 thesis / journal publication 走的路線。
-
-\section{資料}
-
+\section{Paper Summary and Method}
+The paper proposes Relational Stock Ranking (RSR) with Temporal Graph Convolution, encoding industry and Wikidata relations among stocks into a time-sensitive ranking task to predict the relative ranking of next-day stock returns.
+\section{What Is Actually Graded}
+The R1--R4 folders originally referred to a grading-rubric item for which no source could be found. Neither course syllabus nor the official course GitHub contains that rubric or describes separate grades for R1, R2, R3, and R4.
+\begin{center}\begin{tabular}{lll}\toprule
+Item & Weight & Description \\\midrule
+Participation & 20\% & Exercises, presentations, class wrap-ups, and cold calls \\
+Project & 40\% & LaTeX manuscript and presentation slides \\
+Exam & 40\% & In-class exam; one double-sided A4 reference sheet allowed \\\bottomrule
+\end{tabular}\end{center}
+The Project grade is based on the LaTeX manuscript, not the folder structure. R1--R4 hold draft material on motivation, EDA, methods, experiments, results, and conclusions.
+\section{Project Scope}
+This project is a straight replication of Feng et al. (2019), without an architectural extension. It compares Rank\_LSTM (without a relation graph) with RSR (using a static industry graph). Dynamic-relation experiments are retained as exploratory records and excluded from the final manuscript's conclusions.
+\section{Data and Code}
+Processed stock data beginning 2013-01-01 are under \path{../Temporal_Relational_Stock_Ranking/data/}. Industry relations encode sector/industry links; Wikidata relations encode company relationships.
 \begin{itemize}[leftmargin=*]
-  \item \textbf{Sequential Data}：NASDAQ/NYSE 逾 8,000 檔股票 30 年歷史日線資料
-        （open, high, low, close, volume），來源 Google Finance，論文使用 2013-01-01 起的處理後版本
-  \item \textbf{Industry Relation}：NASDAQ/NYSE 股票的產業關係（sector/industry）
-  \item \textbf{Wiki Relation}：從 Wikidata 抽取的公司關係
-  \item 資料已隨官方 repo 提供，路徑：\path{../Temporal_Relational_Stock_Ranking/data/}
+\item \path{training/rank_lstm.py}: Rank\_LSTM baseline without a relation graph.
+\item \path{training/relation_rank_lstm.py}: Relational Stock Ranking (RSR).
 \end{itemize}
-
-\section{Code}
-
-Python，Jupyter Notebook（README 要求交 Jupyter Notebook，原始訓練腳本為 \path{.py}，另外整理成 \path{.ipynb}）：
+\section{Manuscript and Slides}
 \begin{itemize}[leftmargin=*]
-  \item \path{training/rank_lstm.py}：Baseline，Rank\_LSTM（不含關係圖）
-  \item \path{training/relation_rank_lstm.py}：完整模型，Relational Stock Ranking (RSR)
+\item Overleaf: \url{https://www.overleaf.com/read/fjkrqhnbqwgc#e5d02b} (read-only link; add \path{venteng@gmail.com} as a collaborator).
+\item Canva slides: \url{https://canva.link/psyac0w98zuyn5l}.
+\item GitHub: \url{https://github.com/paul931130/112700019-Paul}.
 \end{itemize}
-
-\section{Manuscript / Slides / GitHub}
-
-\begin{itemize}[leftmargin=*]
-  \item Overleaf：（待補連結，分享至 venteng@gmail.com）
-  \item Canva Slides：（待補連結，分享至 venteng@gmail.com）
-  \item GitHub：（待補：學生自己的 GitHub 頁面連結）
-\end{itemize}
-
 \end{document}

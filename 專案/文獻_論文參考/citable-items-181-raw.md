@@ -1,4 +1,4 @@
-以下為頁面中列出的 Citable Items (可引用文獻) 標題列表：
+The following titles are listed as “Citable Items” on the source page:
 
 1. Is Carbon Risk Priced in the Cross Section of Corporate Bond Returns?  
 2. Retail Trading and Return Predictability in China  
