@@ -1,0 +1,7 @@
+# Versions that produced the logs in ../logs/ (Python 3.12.10, CPU).
+# Run with TF_USE_LEGACY_KERAS=1 (see README.md).
+tensorflow==2.21.0
+tf_keras==2.21.0
+numpy==2.5.3
+scipy==1.18.1
+scikit-learn==1.9.1

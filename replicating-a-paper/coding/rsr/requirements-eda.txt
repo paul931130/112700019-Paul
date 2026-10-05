@@ -1,0 +1,4 @@
+# For ../eda.ipynb (Python 3.12.10).
+pandas==2.3.3
+matplotlib==3.10.8
+numpy==2.4.2

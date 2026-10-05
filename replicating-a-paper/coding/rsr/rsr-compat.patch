@@ -1,0 +1,144 @@
+diff --git a/training/rank_lstm.py b/training/rank_lstm.py
+index 51d9aab..3e0664b 100644
+--- a/training/rank_lstm.py
++++ b/training/rank_lstm.py
+@@ -3,7 +3,8 @@ import copy
+ import numpy as np
+ import os
+ import random
+-import tensorflow as tf
++import tensorflow.compat.v1 as tf
++tf.disable_v2_behavior()
+ from time import time
+ try:
+     from tensorflow.python.ops.nn_ops import leaky_relu
+@@ -23,10 +24,12 @@ from evaluator import evaluate
+ 
+ class RankLSTM:
+     def __init__(self, data_path, market_name, tickers_fname, parameters,
+-                 steps=1, epochs=50, batch_size=None, gpu=False):
++                 steps=1, epochs=50, batch_size=None, gpu=False,
++                 emb_save_path=None):
+         self.data_path = data_path
+         self.market_name = market_name
+         self.tickers_fname = tickers_fname
++        self.emb_save_path = emb_save_path
+         # load data
+         self.tickers = np.genfromtxt(os.path.join(data_path, '..', tickers_fname),
+                                      dtype=str, delimiter='\t', skip_header=False)
+@@ -83,7 +86,7 @@ class RankLSTM:
+             base_price = tf.placeholder(tf.float32, [self.batch_size, 1])
+             all_one = tf.ones([self.batch_size, 1], dtype=tf.float32)
+ 
+-            lstm_cell = tf.contrib.rnn.BasicLSTMCell(
++            lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(
+                 self.parameters['unit']
+             )
+ 
+@@ -325,6 +328,29 @@ class RankLSTM:
+             print('epoch:', i, ('time: %.4f ' % (t4 - t1)))
+         print('\nBest Valid performance:', best_valid_perf)
+         print('\tBest Test performance:', best_test_perf)
++
++        if self.emb_save_path is not None:
++            # Export the sequential embedding for every offset the relational
++            # model can index (relation_rank_lstm.py reads embedding[:, offset, :]
++            # with the same offset convention as get_batch here), using the
++            # final trained weights. Not part of the official repo: it doesn't
++            # ship a pretrained embedding, only a Google Drive link for one.
++            seq_len = self.parameters['seq']
++            n_offsets = self.trade_dates - seq_len - self.steps + 1
++            full_emb = np.zeros(
++                [len(self.tickers), self.trade_dates, self.parameters['unit']],
++                dtype=np.float32
++            )
++            for offset in range(n_offsets):
++                eod_batch, mask_batch, price_batch, gt_batch = self.get_batch(offset)
++                feed_dict = {feature: eod_batch}
++                cur_semb = sess.run(seq_emb, feed_dict)
++                full_emb[:, offset, :] = cur_semb
++            os.makedirs(os.path.dirname(self.emb_save_path), exist_ok=True)
++            np.save(self.emb_save_path, full_emb)
++            print('saved sequential embedding:', self.emb_save_path,
++                  full_emb.shape)
++
+         sess.close()
+         tf.reset_default_graph()
+ 
+@@ -355,6 +381,10 @@ if __name__ == '__main__':
+     parser.add_argument('-a', default=1,
+                         help='alpha, the weight of ranking loss')
+     parser.add_argument('-g', '--gpu', type=int, default=0, help='use gpu')
++    parser.add_argument('--save_emb', type=str, default=None,
++                        help='path to save the sequential embedding '
++                             '(.npy) for relation_rank_lstm.py to consume')
++    parser.add_argument('--epochs', type=int, default=50)
+     args = parser.parse_args()
+ 
+     if args.t is None:
+@@ -371,6 +401,7 @@ if __name__ == '__main__':
+         market_name=args.m,
+         tickers_fname=args.t,
+         parameters=parameters,
+-        steps=1, epochs=50, batch_size=None, gpu=args.gpu
++        steps=1, epochs=args.epochs, batch_size=None, gpu=args.gpu,
++        emb_save_path=args.save_emb
+     )
+     pred_all = rank_LSTM.train()
+diff --git a/training/relation_rank_lstm.py b/training/relation_rank_lstm.py
+index 20ada77..e90c836 100644
+--- a/training/relation_rank_lstm.py
++++ b/training/relation_rank_lstm.py
+@@ -4,7 +4,8 @@ import numpy as np
+ import os
+ # import psutil
+ import random
+-import tensorflow as tf
++import tensorflow.compat.v1 as tf
++tf.disable_v2_behavior()
+ from time import time
+ try:
+     from tensorflow.python.ops.nn_ops import leaky_relu
+@@ -28,9 +29,10 @@ tf.set_random_seed(seed)
+ 
+ class ReRaLSTM:
+     def __init__(self, data_path, market_name, tickers_fname, relation_name,
+-                 emb_fname, parameters, steps=1, epochs=50, batch_size=None, flat=False, gpu=False, in_pro=False):
++                 emb_fname, parameters, steps=1, epochs=50, batch_size=None, flat=False, gpu=False, in_pro=False,
++                 seed=123456789):
+ 
+-        seed = 123456789
++        self.seed = seed
+         random.seed(seed)
+         np.random.seed(seed)
+         tf.set_random_seed(seed)
+@@ -103,7 +105,7 @@ class ReRaLSTM:
+         with tf.device(device_name):
+             tf.reset_default_graph()
+ 
+-            seed = 123456789
++            seed = self.seed
+             random.seed(seed)
+             np.random.seed(seed)
+             tf.set_random_seed(seed)
+@@ -406,6 +408,8 @@ if __name__ == '__main__':
+                         default='sector_industry',
+                         help='relation type: sector_industry or wikidata')
+     parser.add_argument('-ip', '--inner_prod', type=int, default=0)
++    parser.add_argument('--epochs', type=int, default=50)
++    parser.add_argument('--seed', type=int, default=123456789)
+     args = parser.parse_args()
+ 
+     if args.t is None:
+@@ -426,8 +430,8 @@ if __name__ == '__main__':
+         relation_name=args.rel_name,
+         emb_fname=args.emb_file,
+         parameters=parameters,
+-        steps=1, epochs=50, batch_size=None, gpu=args.gpu,
+-        in_pro=args.inner_prod
++        steps=1, epochs=args.epochs, batch_size=None, gpu=args.gpu,
++        in_pro=args.inner_prod, seed=args.seed
+     )
+ 
+     pred_all = RR_LSTM.train()
+\ No newline at end of file
