@@ -13,3 +13,5 @@ __pycache__/
 .DS_Store
 *.venv/
 venv/
+
+in-class-exercise/0914/Temporal_Relational_Stock_Ranking/
