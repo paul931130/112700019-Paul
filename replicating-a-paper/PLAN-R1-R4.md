@@ -6,7 +6,7 @@ Today is 2026-09-27. Each of the four milestones consists of the corresponding m
 
 | Milestone | Deadline | Days remaining | Manuscript sections | Status |
 |---|---|---:|---|---|
-| R1: Topic and Motivation | 10/05 23:59 | 8 | `1 Introduction | Manuscript PDF pushed; slides PDF export pending |
+| R1: Topic and Motivation | 10/05 23:59 | 8 | `1 Introduction | Manuscript PDF pushed; slides PDF pushed |
 | R2: Data and EDA | 10/19 23:59 | 22 | `3 Data | EDA notebook exists; PLAN outline still needs to be written up as R2.md |
 | R3: Model and Experimental Design | 11/09 23:59 | 43 | `4 Methods + `5 Results | Training results complete; PLAN needs an R3.md draft and robustness checks remain |
 | R4: Empirical Analysis and Conclusion | 11/30 23:59 | 64 | `6 Discussion + `7 Conclusion | R4.md draft complete; revisit after R3 robustness checks |
@@ -22,8 +22,8 @@ Course requirement (`repo-template/replicating-a-paper/README.md`): push PDFs of
 - [x] Overleaf (read-only link) and Canva links added to `README.md`
 - [x] Full paper PDF added to `references/`
 - [x] `_snapshots/20261005-manuscript.pdf` (compiled from `manuscript/main.tex`)
-- [ ] Your action: export the Canva slides as PDF, save as `_snapshots/20261005-slides.pdf`, then commit and push
-- [ ] Your action: add `venteng@gmail.com` as an Overleaf collaborator and share the Canva deck with the same address
+- [x] `_snapshots/20261005-slides.pdf` (built from the course .pptx template, pages 1-2 only)
+- [ ] Your action: add `venteng@gmail.com` as an Overleaf collaborator (Canva share optional now that the PDF is in the repo)
 
 ## R2 (10/19): Turn the EDA into Written Findings
 
