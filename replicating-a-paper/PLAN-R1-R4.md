@@ -16,7 +16,7 @@ Today is 2026-09-27. Each of the four milestones consists of the corresponding m
 - [x] Content: `reports/R1_topic_and_motivation/R1.md`
 - [x] Manuscript `1 synchronized
 - [x] Slide outline: `reports/R1_topic_and_motivation/R1_slides_outline.md`
-- [x] Local Git repository created (`HW/` and `Project/` committed)
+- [x] Local Git repository created (`homework/`, `in-class-exercise/` and `replicating-a-paper/` committed)
 - [ ] Your action: create the GitHub repository and push (`202609-ML-FinTech-112700019-Paul`)
 - [ ] Your action: create the Overleaf project and share it with `venteng@gmail.com`
 - [ ] Your action: format the Canva slides and share them with `venteng@gmail.com`
@@ -27,7 +27,7 @@ Today is 2026-09-27. Each of the four milestones consists of the corresponding m
 
 ## R2 (10/19): Turn the EDA into Written Findings
 
-Current status: `reports/R2_data_and_eda/eda.ipynb` already contains analysis (findings about the missing-value sentinel, ETFs mixed into the graph, etc., already cited in manuscript section 3), but the R2 folder has no written draft like R1.md or R4.md—only a PLAN outline.
+Current status: `coding/eda.ipynb` already contains analysis (findings about the missing-value sentinel, ETFs mixed into the graph, etc., already cited in manuscript section 3), but the R2 folder has no written draft like R1.md or R4.md—only a PLAN outline.
 
 - [ ] Write `reports/R2_data_and_eda/R2.md`: summarize the findings from `eda.ipynb` (data sources, scale, and two data-quality issues) for manuscript section 3 Data. The manuscript section itself is already written; this is mainly a standalone version for the R2 presentation.
 - [ ] Prepare a slide outline in the same format as `R1_slides_outline.md`.

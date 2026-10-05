@@ -32,8 +32,8 @@ The `reports/R1~R4` folders originally referenced a "corresponding grading rubri
 
 ```
 202609-ML-FinTech-<studentID>-<nickname>/
-├── HW/
-└── Project/   ← README.md, logs, snapshots, data and codes
+├── homework/
+└── replicating-a-paper/   ← README.md, logs, snapshots, data and codes
 ```
 
 **The Project's README.md must include** (p.10 "Your GitHub Repo"): a link to your GitHub page, a Chicago-style citation of the replicated paper, a link to the Overleaf manuscript, a link to the Canva slides, "Code" (Jupyter Notebook), and "Data" (dataset or link).
@@ -85,6 +85,6 @@ Python, Jupyter Notebook (the README requires a Jupyter Notebook submission; the
 
 - Student ID: 112700019 · Nickname: Paul
 - Personal repo: https://github.com/paul931130/112700019-Paul
-- Pushed: `HW/` and `Project/` are tracked and pushed
-  (`Temporal_Relational_Stock_Ranking/`, `共用參考資料`, `Project/code/GCNET-Code`,
-  `Project/code/HGTAN` are external clones, excluded via `.gitignore`, not part of the personal repo)
+- Pushed: `homework/`, `in-class-exercise/` and `replicating-a-paper/` are tracked and pushed
+  (`Temporal_Relational_Stock_Ranking/`, `共用參考資料`, `replicating-a-paper/coding/GCNET-Code`,
+  `replicating-a-paper/coding/HGTAN` are external clones, excluded via `.gitignore`, not part of the personal repo)

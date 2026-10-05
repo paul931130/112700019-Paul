@@ -29,7 +29,7 @@ A new section not directly covered by R1 PLAN.md, but source material is availab
 
 ## 3. Data
 
-[R2] Source: `reports/R2_data_and_eda/eda.ipynb`. Rewrite the A1/A2/A3/B1 findings directly as prose:
+[R2] Source: `coding/eda.ipynb`. Rewrite the A1/A2/A3/B1 findings directly as prose:
 
 - 3.1 Data source: 1,026 NASDAQ stocks in `data/2013-01-01/`, with 1,246 trading days (about five years, not the 30 years stated in the README).
 - 3.2 Relation graph: industry relations; 156 tickers (15%) are ETFs/funds, not individual stocks, and have been excluded.

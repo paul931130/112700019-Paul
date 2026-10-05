@@ -1,9 +1,10 @@
-# Shared course materials / external clones, not part of the personal Project repo
+# Shared course materials / external clones, not part of the personal repo
 /Temporal_Relational_Stock_Ranking/
 /共用參考資料
 /tmp/
-/Project/code/GCNET-Code/
-/Project/code/HGTAN/
+/_course-materials/
+/replicating-a-paper/coding/GCNET-Code/
+/replicating-a-paper/coding/HGTAN/
 
 # General
 __pycache__/
@@ -12,4 +13,3 @@ __pycache__/
 .DS_Store
 *.venv/
 venv/
-COURSE-README.md
